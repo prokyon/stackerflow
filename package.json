@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/togiberlin/stackerflow/issues"
   },
-  "homepage": "https://github.com/togiberlin/stackerflow#readme"
+  "homepage": "https://github.com/togiberlin/stackerflow#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
