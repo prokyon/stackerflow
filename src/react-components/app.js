@@ -1,5 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import HomePage from "./HomePage";
 
 class App extends React.Component {
   constructor() {
@@ -8,9 +9,9 @@ class App extends React.Component {
 
   render() {
     return(
-      <h2>Hello world!</h2>
+      <HomePage/>
     );
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById("root"));
