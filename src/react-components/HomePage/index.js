@@ -14,7 +14,7 @@ class HomePage extends React.Component {
 
         <section>
           <section className="container">
-            <h2>Community Questions</h2>
+            <h2>Top Questions</h2>
           </section>
         </section>
       </section>

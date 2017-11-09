@@ -46,3 +46,31 @@ table {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+/*------------------------------ CUSTOM CSS ------------------------------*/
+body {
+	font-family: "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+	font-size: 13px;
+	color: #242729;
+}
+
+h1 {
+	font-size: 20px;
+	line-height: 75px;
+	font-weight: 500;
+}
+
+h2 {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+a {
+	font-size: 13px;
+	color: #005999;
+	text-decoration: none;
+}
+
+.container {
+	width: 940px;
+	margin: 0 auto;
+}
