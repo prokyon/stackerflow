@@ -20945,7 +20945,7 @@ if (process.env.NODE_ENV === 'production') {
 
 }).call(this,require('_process'))
 },{"./cjs/react.development.js":29,"./cjs/react.production.min.js":30,"_process":1}],32:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -20953,7 +20953,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -20971,30 +20971,109 @@ var HomePage = function (_React$Component) {
   function HomePage() {
     _classCallCheck(this, HomePage);
 
-    return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this));
+    var _this = _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this));
+
+    _this.state = {
+      questionList: [{
+        id: 1,
+        name: 'How do I learn React?',
+        link: 'https://www.udacity.com/course/react-nanodegree--nd019',
+        media: '/img/udacity.jpeg',
+        upvote: 148,
+        description: 'Can anyone recommend the Udacity course?',
+        user: {
+          name: 'Peter Griffin',
+          avatar: '/img/peter.jpeg'
+        }
+      }, {
+        id: 2,
+        name: 'What career opportunities does a CS degree offer me?',
+        link: 'https://www-cs.stanford.edu/',
+        media: '/img/stanford.jpeg',
+        upvote: 65,
+        description: 'I want to apply at Stanford soon!',
+        user: {
+          name: 'Lois Griffin',
+          avatar: '/img/lois.jpeg'
+        }
+      }]
+    };
+    return _this;
   }
 
   _createClass(HomePage, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "section",
+        'section',
         null,
         _react2.default.createElement(
-          "header",
+          'header',
           null,
-          _react2.default.createElement("img", { src: "/img/bg.png", width: "100%" })
+          _react2.default.createElement('img', { src: '/img/bg.png', width: '100%' })
         ),
         _react2.default.createElement(
-          "section",
+          'section',
           null,
           _react2.default.createElement(
-            "section",
-            { className: "container" },
+            'section',
+            { className: 'container' },
             _react2.default.createElement(
-              "h2",
+              'h2',
               null,
-              "Community Questions"
+              'Top Questions'
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: 'question-list' },
+              _react2.default.createElement(
+                'li',
+                { className: 'question-item' },
+                _react2.default.createElement(
+                  'a',
+                  { className: 'upvote-button', href: '#' },
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
+                  ),
+                  _react2.default.createElement('br', null),
+                  this.state.questionList[0].upvote
+                ),
+                _react2.default.createElement('img', { className: 'question-item-media', src: this.state.questionList[0].media }),
+                _react2.default.createElement(
+                  'section',
+                  { className: 'product-item-info' },
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#' },
+                    _react2.default.createElement(
+                      'h2',
+                      null,
+                      this.state.questionList[0].name
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    this.state.questionList[0].description
+                  ),
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#' },
+                    _react2.default.createElement('img', { className: 'small-avatar', src: this.state.questionList[0].user.avatar })
+                  )
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { className: 'product-item-link', href: this.state.questionList[0].link },
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    _react2.default.createElement('i', { className: 'fa fa-link' })
+                  )
+                )
+              )
             )
           )
         )
