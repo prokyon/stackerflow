@@ -7,5 +7,11 @@ A simple Q&A platform. People can ask questions and receive comments and upvotes
 - [React.js](https://reactjs.org/)
 - [Google Firebase](https://firebase.google.com/)
 
-## Setup
+## Prerequisites
 ...tbd...
+
+## Setup
+- Install all dependencies by running ```$ sudo npm install```
+- Run ```$ npm run build:watch```
+- In a new tab, run ```$ npm start```
+- Check your browser on port 3000
