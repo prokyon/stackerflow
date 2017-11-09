@@ -4,7 +4,7 @@
   "description": "A simple Q&A platform. People can ask questions and receive comments and upvotes from peer users.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/express-server.js"
   },
   "repository": {
     "type": "git",
