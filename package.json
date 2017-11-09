@@ -4,7 +4,9 @@
   "description": "A simple Q&A platform. People can ask questions and receive comments and upvotes from peer users.",
   "main": "index.js",
   "scripts": {
-    "start": "node server/express-server.js"
+    "start": "node server/express-server.js",
+    "build": "browserify -t [ babelify --presets [ es2015 stage-0 react ] ] ./src/react-components/app.js -o ./public/js/app.js",
+    "build:watch": "watch 'npm run build' src"
   },
   "repository": {
     "type": "git",
