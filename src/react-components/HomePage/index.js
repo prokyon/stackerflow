@@ -9,24 +9,24 @@ class HomePage extends React.Component {
           id: 1,
           name: 'How do I learn React?',
           link: 'https://www.udacity.com/course/react-nanodegree--nd019',
-          media: '/img/udacity.jpeg',
-          upvote: 148,
+          media: '/img/udacity.png',
+          likes: 148,
           description: 'Can anyone recommend the Udacity course?',
           user: {
             name: 'Peter Griffin',
-            avatar: '/img/peter.jpeg'
+            avatar: '/img/peter.jpg'
           }
         },
         {
           id: 2,
           name: 'What career opportunities does a CS degree offer me?',
           link: 'https://www-cs.stanford.edu/',
-          media: '/img/stanford.jpeg',
-          upvote: 65,
+          media: '/img/stanford.jpg',
+          likes: 65,
           description: 'I want to apply at Stanford soon!',
           user: {
             name: 'Lois Griffin',
-            avatar: '/img/lois.jpeg'
+            avatar: '/img/lois.png'
           }
         }
       ]
@@ -46,26 +46,51 @@ class HomePage extends React.Component {
 
             <ul className="question-list">
               <li className="question-item">
-                <a className="upvote-button" href="#">
+                <a className="like-button" href="#">
                   <span>
                     <i className="fa fa-thumbs-o-up"></i>
                   </span>
                   <br/>
-                  {this.state.questionList[0].upvote}
+                  {this.state.questionList[0].likes}
                 </a>
                 <img className="question-item-media" src={this.state.questionList[0].media} />
-                <section className="product-item-info">
+                <section className="question-item-info">
                   <a href="#">
                     <h2>{this.state.questionList[0].name}</h2>
                   </a>
                   <p>{this.state.questionList[0].description}</p>
                   <a href="#">
-                    <img className="small-avatar" src={this.state.questionList[0].user.avatar} />
+                    <img className="avatar-small" src={this.state.questionList[0].user.avatar} />
                   </a>
                 </section>
-                <a className="product-item-link" href={this.state.questionList[0].link}>
+                <a className="question-item-link" href={this.state.questionList[0].link}>
                   <span>
-                    <i className="fa fa-link"></i>
+                    <i className="fa fa-link fa-2x"></i>
+                  </span>
+                </a>
+              </li>
+
+              <li className="question-item">
+                <a className="like-button" href="#">
+                  <span>
+                    <i className="fa fa-thumbs-o-up"></i>
+                  </span>
+                  <br/>
+                  {this.state.questionList[1].likes}
+                </a>
+                <img className="question-item-media" src={this.state.questionList[1].media} />
+                <section className="question-item-info">
+                  <a href="#">
+                    <h2>{this.state.questionList[1].name}</h2>
+                  </a>
+                  <p>{this.state.questionList[1].description}</p>
+                  <a href="#">
+                    <img className="avatar-small" src={this.state.questionList[1].user.avatar} />
+                  </a>
+                </section>
+                <a className="question-item-link" href={this.state.questionList[1].link}>
+                  <span>
+                    <i className="fa fa-link fa-2x"></i>
                   </span>
                 </a>
               </li>

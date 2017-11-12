@@ -20978,23 +20978,23 @@ var HomePage = function (_React$Component) {
         id: 1,
         name: 'How do I learn React?',
         link: 'https://www.udacity.com/course/react-nanodegree--nd019',
-        media: '/img/udacity.jpeg',
-        upvote: 148,
+        media: '/img/udacity.png',
+        likes: 148,
         description: 'Can anyone recommend the Udacity course?',
         user: {
           name: 'Peter Griffin',
-          avatar: '/img/peter.jpeg'
+          avatar: '/img/peter.jpg'
         }
       }, {
         id: 2,
         name: 'What career opportunities does a CS degree offer me?',
         link: 'https://www-cs.stanford.edu/',
-        media: '/img/stanford.jpeg',
-        upvote: 65,
+        media: '/img/stanford.jpg',
+        likes: 65,
         description: 'I want to apply at Stanford soon!',
         user: {
           name: 'Lois Griffin',
-          avatar: '/img/lois.jpeg'
+          avatar: '/img/lois.png'
         }
       }]
     };
@@ -21031,19 +21031,19 @@ var HomePage = function (_React$Component) {
                 { className: 'question-item' },
                 _react2.default.createElement(
                   'a',
-                  { className: 'upvote-button', href: '#' },
+                  { className: 'like-button', href: '#' },
                   _react2.default.createElement(
                     'span',
                     null,
                     _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
                   ),
                   _react2.default.createElement('br', null),
-                  this.state.questionList[0].upvote
+                  this.state.questionList[0].likes
                 ),
                 _react2.default.createElement('img', { className: 'question-item-media', src: this.state.questionList[0].media }),
                 _react2.default.createElement(
                   'section',
-                  { className: 'product-item-info' },
+                  { className: 'question-item-info' },
                   _react2.default.createElement(
                     'a',
                     { href: '#' },
@@ -21061,16 +21061,64 @@ var HomePage = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     { href: '#' },
-                    _react2.default.createElement('img', { className: 'small-avatar', src: this.state.questionList[0].user.avatar })
+                    _react2.default.createElement('img', { className: 'avatar-small', src: this.state.questionList[0].user.avatar })
                   )
                 ),
                 _react2.default.createElement(
                   'a',
-                  { className: 'product-item-link', href: this.state.questionList[0].link },
+                  { className: 'question-item-link', href: this.state.questionList[0].link },
                   _react2.default.createElement(
                     'span',
                     null,
-                    _react2.default.createElement('i', { className: 'fa fa-link' })
+                    _react2.default.createElement('i', { className: 'fa fa-link fa-2x' })
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: 'question-item' },
+                _react2.default.createElement(
+                  'a',
+                  { className: 'like-button', href: '#' },
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
+                  ),
+                  _react2.default.createElement('br', null),
+                  this.state.questionList[1].likes
+                ),
+                _react2.default.createElement('img', { className: 'question-item-media', src: this.state.questionList[1].media }),
+                _react2.default.createElement(
+                  'section',
+                  { className: 'question-item-info' },
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#' },
+                    _react2.default.createElement(
+                      'h2',
+                      null,
+                      this.state.questionList[1].name
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    this.state.questionList[1].description
+                  ),
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#' },
+                    _react2.default.createElement('img', { className: 'avatar-small', src: this.state.questionList[1].user.avatar })
+                  )
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { className: 'question-item-link', href: this.state.questionList[1].link },
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    _react2.default.createElement('i', { className: 'fa fa-link fa-2x' })
                   )
                 )
               )

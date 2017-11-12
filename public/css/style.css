@@ -46,7 +46,8 @@ table {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/*------------------------------ CUSTOM CSS ------------------------------*/
+
+/*------------------------------ Custom CSS ------------------------------*/
 body {
 	font-family: "Arial", "Helvetica Neue", "Helvetica", sans-serif;
 	font-size: 13px;
@@ -73,4 +74,79 @@ a {
 .container {
 	width: 940px;
 	margin: 0 auto;
+}
+
+/*------------------------------ Questions ------------------------------*/
+.question-list {
+	margin-top: 20px;
+}
+
+.question-item {
+	padding: 15px;
+	border-radius: 4px;
+}
+
+.question-item:hover {
+	background-color: #f2f2f2;
+}
+
+.question-item > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.question-item-media {
+	width: 130px;
+	height: 90px;
+}
+
+.question-item-info {
+	padding: 0 20px;
+	height: 90px;
+}
+
+.question-item-info p {
+	line-height: 50px;
+	color: #999999;
+	font-size: 14px;
+}
+
+.product-item-link {
+	display: block;
+	width: 20px;
+	padding: 3px;
+	border-radius: 50%;
+	float: right;
+	background-color: white;
+	text-align: center;
+}
+
+.avatar-small {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+
+/*------------------------------ Like Button ------------------------------*/
+.like-button {
+	font-weight: 600;
+	margin-right: 15px;
+	width: 34px;
+	text-align: center;
+	padding: 4px 0;
+	border-radius: 4px;
+	background-color: #fff;
+}
+
+.like-button:hover {
+	color: #5e9aee;
+}
+
+.like-button.active {
+	color: #5e9aee;
+}
+
+.like-button > * {
+	display: block;
+	padding: 3px;
 }
