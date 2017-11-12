@@ -21070,55 +21070,70 @@ var QuestionItem = function (_React$Component) {
   }
 
   _createClass(QuestionItem, [{
+    key: "renderQuestionDetails",
+    value: function renderQuestionDetails() {
+      return _react2.default.createElement(
+        "section",
+        { className: "question-item-info" },
+        _react2.default.createElement(
+          "a",
+          { href: "#" },
+          _react2.default.createElement(
+            "h2",
+            null,
+            this.props.name
+          )
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          this.props.description
+        ),
+        _react2.default.createElement(
+          "a",
+          { href: "#" },
+          _react2.default.createElement("img", { className: "avatar-small", src: this.props.user.avatar })
+        )
+      );
+    }
+  }, {
+    key: "renderLikeButton",
+    value: function renderLikeButton() {
+      return _react2.default.createElement(
+        "a",
+        { className: "like-button", href: "#" },
+        _react2.default.createElement(
+          "span",
+          null,
+          _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
+        ),
+        _react2.default.createElement("br", null),
+        this.props.likes
+      );
+    }
+  }, {
+    key: "renderExternalLink",
+    value: function renderExternalLink() {
+      return _react2.default.createElement(
+        "a",
+        { className: "question-item-link", href: this.props.link },
+        _react2.default.createElement(
+          "span",
+          null,
+          _react2.default.createElement("i", { className: "fa fa-link fa-2x" })
+        )
+      );
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
         "li",
         { className: "question-item" },
-        _react2.default.createElement(
-          "a",
-          { className: "like-button", href: "#" },
-          _react2.default.createElement(
-            "span",
-            null,
-            _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
-          ),
-          _react2.default.createElement("br", null),
-          this.props.likes
-        ),
+        this.renderLikeButton(),
         _react2.default.createElement("img", { className: "question-item-media", src: this.props.media }),
-        _react2.default.createElement(
-          "section",
-          { className: "question-item-info" },
-          _react2.default.createElement(
-            "a",
-            { href: "#" },
-            _react2.default.createElement(
-              "h2",
-              null,
-              this.props.name
-            )
-          ),
-          _react2.default.createElement(
-            "p",
-            null,
-            this.props.description
-          ),
-          _react2.default.createElement(
-            "a",
-            { href: "#" },
-            _react2.default.createElement("img", { className: "avatar-small", src: this.props.user.avatar })
-          )
-        ),
-        _react2.default.createElement(
-          "a",
-          { className: "question-item-link", href: this.props.link },
-          _react2.default.createElement(
-            "span",
-            null,
-            _react2.default.createElement("i", { className: "fa fa-link fa-2x" })
-          )
-        )
+        this.renderQuestionDetails(),
+        this.renderExternalLink()
       );
     }
   }]);
