@@ -21039,7 +21039,7 @@ var HomePage = function (_React$Component) {
 
 exports.default = HomePage;
 
-},{"../Question/QuestionList":33,"react":31}],33:[function(require,module,exports){
+},{"../Question/QuestionList":34,"react":31}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21051,6 +21051,99 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var QuestionItem = function (_React$Component) {
+  _inherits(QuestionItem, _React$Component);
+
+  function QuestionItem() {
+    _classCallCheck(this, QuestionItem);
+
+    return _possibleConstructorReturn(this, (QuestionItem.__proto__ || Object.getPrototypeOf(QuestionItem)).apply(this, arguments));
+  }
+
+  _createClass(QuestionItem, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "li",
+        { className: "question-item" },
+        _react2.default.createElement(
+          "a",
+          { className: "like-button", href: "#" },
+          _react2.default.createElement(
+            "span",
+            null,
+            _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
+          ),
+          _react2.default.createElement("br", null),
+          this.props.likes
+        ),
+        _react2.default.createElement("img", { className: "question-item-media", src: this.props.media }),
+        _react2.default.createElement(
+          "section",
+          { className: "question-item-info" },
+          _react2.default.createElement(
+            "a",
+            { href: "#" },
+            _react2.default.createElement(
+              "h2",
+              null,
+              this.props.name
+            )
+          ),
+          _react2.default.createElement(
+            "p",
+            null,
+            this.props.description
+          ),
+          _react2.default.createElement(
+            "a",
+            { href: "#" },
+            _react2.default.createElement("img", { className: "avatar-small", src: this.props.user.avatar })
+          )
+        ),
+        _react2.default.createElement(
+          "a",
+          { className: "question-item-link", href: this.props.link },
+          _react2.default.createElement(
+            "span",
+            null,
+            _react2.default.createElement("i", { className: "fa fa-link fa-2x" })
+          )
+        )
+      );
+    }
+  }]);
+
+  return QuestionItem;
+}(_react2.default.Component);
+
+exports.default = QuestionItem;
+
+},{"react":31}],34:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _QuestionItem = require("./QuestionItem");
+
+var _QuestionItem2 = _interopRequireDefault(_QuestionItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21075,102 +21168,24 @@ var QuestionList = function (_React$Component) {
       return _react2.default.createElement(
         "ul",
         { className: "question-list" },
-        _react2.default.createElement(
-          "li",
-          { className: "question-item" },
-          _react2.default.createElement(
-            "a",
-            { className: "like-button", href: "#" },
-            _react2.default.createElement(
-              "span",
-              null,
-              _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
-            ),
-            _react2.default.createElement("br", null),
-            this.props.questionList[0].likes
-          ),
-          _react2.default.createElement("img", { className: "question-item-media", src: this.props.questionList[0].media }),
-          _react2.default.createElement(
-            "section",
-            { className: "question-item-info" },
-            _react2.default.createElement(
-              "a",
-              { href: "#" },
-              _react2.default.createElement(
-                "h2",
-                null,
-                this.props.questionList[0].name
-              )
-            ),
-            _react2.default.createElement(
-              "p",
-              null,
-              this.props.questionList[0].description
-            ),
-            _react2.default.createElement(
-              "a",
-              { href: "#" },
-              _react2.default.createElement("img", { className: "avatar-small", src: this.props.questionList[0].user.avatar })
-            )
-          ),
-          _react2.default.createElement(
-            "a",
-            { className: "question-item-link", href: this.props.questionList[0].link },
-            _react2.default.createElement(
-              "span",
-              null,
-              _react2.default.createElement("i", { className: "fa fa-link fa-2x" })
-            )
-          )
-        ),
-        _react2.default.createElement(
-          "li",
-          { className: "question-item" },
-          _react2.default.createElement(
-            "a",
-            { className: "like-button", href: "#" },
-            _react2.default.createElement(
-              "span",
-              null,
-              _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
-            ),
-            _react2.default.createElement("br", null),
-            this.props.questionList[1].likes
-          ),
-          _react2.default.createElement("img", { className: "question-item-media", src: this.props.questionList[1].media }),
-          _react2.default.createElement(
-            "section",
-            { className: "question-item-info" },
-            _react2.default.createElement(
-              "a",
-              { href: "#" },
-              _react2.default.createElement(
-                "h2",
-                null,
-                this.props.questionList[1].name
-              )
-            ),
-            _react2.default.createElement(
-              "p",
-              null,
-              this.props.questionList[1].description
-            ),
-            _react2.default.createElement(
-              "a",
-              { href: "#" },
-              _react2.default.createElement("img", { className: "avatar-small", src: this.props.questionList[1].user.avatar })
-            )
-          ),
-          _react2.default.createElement(
-            "a",
-            { className: "question-item-link", href: this.props.questionList[1].link },
-            _react2.default.createElement(
-              "span",
-              null,
-              _react2.default.createElement("i", { className: "fa fa-link fa-2x" })
-            )
-          )
-        )
+        _react2.default.createElement(_QuestionItem2.default, {
+          id: this.props.questionList[0].id,
+          name: this.props.questionList[0].name,
+          link: this.props.questionList[0].link,
+          media: this.props.questionList[0].media,
+          likes: this.props.questionList[0].likes,
+          description: this.props.questionList[0].description,
+          user: this.props.questionList[0].user
+        }),
+        _react2.default.createElement(_QuestionItem2.default, {
+          id: this.props.questionList[1].id,
+          name: this.props.questionList[1].name,
+          link: this.props.questionList[1].link,
+          media: this.props.questionList[1].media,
+          likes: this.props.questionList[1].likes,
+          description: this.props.questionList[1].description,
+          user: this.props.questionList[1].user
+        })
       );
     }
   }]);
@@ -21180,7 +21195,7 @@ var QuestionList = function (_React$Component) {
 
 exports.default = QuestionList;
 
-},{"react":31}],34:[function(require,module,exports){
+},{"./QuestionItem":33,"react":31}],35:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21226,4 +21241,4 @@ var App = function (_React$Component) {
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("root"));
 
-},{"./HomePage":32,"react":31,"react-dom":28}]},{},[34]);
+},{"./HomePage":32,"react":31,"react-dom":28}]},{},[35]);
