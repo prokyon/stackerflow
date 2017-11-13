@@ -225,3 +225,31 @@ a {
 .modal .modal-content {
 	position: fixed;
 }
+/*------------------------------ Sign in modal ------------------------------*/
+
+button {
+	border-radius: 20px;
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: 500;
+	outline: 0;
+	border: 0;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+.modal-content.login-modal {
+	text-align: center;
+	width: 400px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.facebook-button {
+	color: white;
+	background-color: #3b5998;
+	margin: 20px;
+}

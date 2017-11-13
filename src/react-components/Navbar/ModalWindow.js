@@ -8,7 +8,7 @@ class ModalWindow extends React.Component {
           <img src="/img/close.png" onClick={this.props.hideLoginModal}/>
         </section>
 
-        <section className="modal-content">
+        <section className="modal-content login-modal">
           <section>{this.props.children}</section>
         </section>
       </section>

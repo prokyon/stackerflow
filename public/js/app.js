@@ -21147,7 +21147,7 @@ var ModalWindow = function (_React$Component) {
         ),
         _react2.default.createElement(
           "section",
-          { className: "modal-content" },
+          { className: "modal-content login-modal" },
           _react2.default.createElement(
             "section",
             null,
