@@ -21039,7 +21039,7 @@ var HomePage = function (_React$Component) {
 
 exports.default = HomePage;
 
-},{"../Question/QuestionList":35,"react":31}],33:[function(require,module,exports){
+},{"../Question/QuestionList":36,"react":31}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21051,6 +21051,78 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ModalWindow = function (_React$Component) {
+  _inherits(ModalWindow, _React$Component);
+
+  function ModalWindow() {
+    _classCallCheck(this, ModalWindow);
+
+    return _possibleConstructorReturn(this, (ModalWindow.__proto__ || Object.getPrototypeOf(ModalWindow)).apply(this, arguments));
+  }
+
+  _createClass(ModalWindow, [{
+    key: "renderModalContent",
+    value: function renderModalContent() {
+      return _react2.default.createElement(
+        "section",
+        { className: "modal" },
+        _react2.default.createElement(
+          "section",
+          { className: "modal-wrap" },
+          _react2.default.createElement("img", { src: "/img/close.png" })
+        ),
+        _react2.default.createElement(
+          "section",
+          { className: "modal-content" },
+          _react2.default.createElement(
+            "section",
+            null,
+            "Description tbd"
+          )
+        )
+      );
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "section",
+        null,
+        this.renderModalContent
+      );
+    }
+  }]);
+
+  return ModalWindow;
+}(_react2.default.Component);
+
+exports.default = ModalWindow;
+
+},{"react":31}],34:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ModalWindow = require("./ModalWindow");
+
+var _ModalWindow2 = _interopRequireDefault(_ModalWindow);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21116,7 +21188,8 @@ var Navbar = function (_React$Component) {
           this.renderStackerFlowLogo(),
           this.renderSearch(),
           this.renderCurrentUser()
-        )
+        ),
+        _react2.default.createElement(_ModalWindow2.default, null)
       );
     }
   }]);
@@ -21126,7 +21199,7 @@ var Navbar = function (_React$Component) {
 
 exports.default = Navbar;
 
-},{"react":31}],34:[function(require,module,exports){
+},{"./ModalWindow":33,"react":31}],35:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21230,7 +21303,7 @@ var QuestionItem = function (_React$Component) {
 
 exports.default = QuestionItem;
 
-},{"react":31}],35:[function(require,module,exports){
+},{"react":31}],36:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21284,7 +21357,7 @@ var QuestionList = function (_React$Component) {
 
 exports.default = QuestionList;
 
-},{"./QuestionItem":34,"react":31}],36:[function(require,module,exports){
+},{"./QuestionItem":35,"react":31}],37:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21339,4 +21412,4 @@ var App = function (_React$Component) {
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("root"));
 
-},{"./HomePage":32,"./Navbar":33,"react":31,"react-dom":28}]},{},[36]);
+},{"./HomePage":32,"./Navbar":34,"react":31,"react-dom":28}]},{},[37]);

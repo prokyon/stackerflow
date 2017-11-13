@@ -1,4 +1,5 @@
 import React from "react";
+import ModalWindow from "./ModalWindow";
 
 class Navbar extends React.Component {
   renderStackerFlowLogo() {
@@ -35,6 +36,7 @@ class Navbar extends React.Component {
           {this.renderSearch()}
           {this.renderCurrentUser()}
         </section>
+        <ModalWindow/>
       </section>
     );
   }
