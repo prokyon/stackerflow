@@ -2,6 +2,22 @@ import React from "react";
 import ModalWindow from "./ModalWindow";
 
 class Navbar extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      modalStatus: false
+    }
+  }
+
+  showLoginModal = () => {
+    this.setState({modalStatus: true});
+  };
+
+  hideLoginModal = () => {
+    this.setState({modalStatus: false});
+  };
+
   renderStackerFlowLogo() {
     return (
       <section className="left">
@@ -23,7 +39,7 @@ class Navbar extends React.Component {
   renderCurrentUser() {
     return (
       <section className="right">
-        <a href="#" className="login-button">Login</a>
+        <a href="#" onClick={this.showLoginModal} className="login-button">Login</a>
       </section>
     );
   }
@@ -36,7 +52,7 @@ class Navbar extends React.Component {
           {this.renderSearch()}
           {this.renderCurrentUser()}
         </section>
-        <ModalWindow/>
+        <ModalWindow status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
       </section>
     );
   }

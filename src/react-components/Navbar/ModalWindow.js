@@ -5,7 +5,7 @@ class ModalWindow extends React.Component {
     return (
       <section className="modal">
         <section className="modal-wrap">
-          <img src="/img/close.png"/>
+          <img src="/img/close.png" onClick={this.props.hideLoginModal}/>
         </section>
 
         <section className="modal-content">
@@ -18,7 +18,9 @@ class ModalWindow extends React.Component {
   render() {
     return (
       <section>
-        {this.renderModalContent}
+        {
+          this.props.status? this.renderModalContent() : null
+        }
       </section>
     );
   }

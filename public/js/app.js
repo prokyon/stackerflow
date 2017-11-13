@@ -21078,7 +21078,7 @@ var ModalWindow = function (_React$Component) {
         _react2.default.createElement(
           "section",
           { className: "modal-wrap" },
-          _react2.default.createElement("img", { src: "/img/close.png" })
+          _react2.default.createElement("img", { src: "/img/close.png", onClick: this.props.hideLoginModal })
         ),
         _react2.default.createElement(
           "section",
@@ -21097,7 +21097,7 @@ var ModalWindow = function (_React$Component) {
       return _react2.default.createElement(
         "section",
         null,
-        this.renderModalContent
+        this.props.status ? this.renderModalContent() : null
       );
     }
   }]);
@@ -21138,7 +21138,20 @@ var Navbar = function (_React$Component) {
   function Navbar() {
     _classCallCheck(this, Navbar);
 
-    return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this));
+
+    _this.showLoginModal = function () {
+      _this.setState({ modalStatus: true });
+    };
+
+    _this.hideLoginModal = function () {
+      _this.setState({ modalStatus: false });
+    };
+
+    _this.state = {
+      modalStatus: false
+    };
+    return _this;
   }
 
   _createClass(Navbar, [{
@@ -21171,7 +21184,7 @@ var Navbar = function (_React$Component) {
         { className: "right" },
         _react2.default.createElement(
           "a",
-          { href: "#", className: "login-button" },
+          { href: "#", onClick: this.showLoginModal, className: "login-button" },
           "Login"
         )
       );
@@ -21189,7 +21202,7 @@ var Navbar = function (_React$Component) {
           this.renderSearch(),
           this.renderCurrentUser()
         ),
-        _react2.default.createElement(_ModalWindow2.default, null)
+        _react2.default.createElement(_ModalWindow2.default, { status: this.state.modalStatus, hideLoginModal: this.hideLoginModal })
       );
     }
   }]);
