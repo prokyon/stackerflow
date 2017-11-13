@@ -21039,7 +21039,72 @@ var HomePage = function (_React$Component) {
 
 exports.default = HomePage;
 
-},{"../Question/QuestionList":36,"react":31}],33:[function(require,module,exports){
+},{"../Question/QuestionList":37,"react":31}],33:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ModalWindow = require("./ModalWindow");
+
+var _ModalWindow2 = _interopRequireDefault(_ModalWindow);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LoginModal = function (_React$Component) {
+  _inherits(LoginModal, _React$Component);
+
+  function LoginModal() {
+    _classCallCheck(this, LoginModal);
+
+    return _possibleConstructorReturn(this, (LoginModal.__proto__ || Object.getPrototypeOf(LoginModal)).apply(this, arguments));
+  }
+
+  _createClass(LoginModal, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        _ModalWindow2.default,
+        this.props,
+        _react2.default.createElement("img", { src: "/img/stackerflow_logo.png" }),
+        _react2.default.createElement(
+          "h1",
+          null,
+          "Learn, Share, Build"
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          "Create your StackerFlow account. It is free and only takes a minute."
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "facebook-signin" },
+          "Sign in with Facebook"
+        )
+      );
+    }
+  }]);
+
+  return LoginModal;
+}(_react2.default.Component);
+
+exports.default = LoginModal;
+
+},{"./ModalWindow":34,"react":31}],34:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21086,7 +21151,7 @@ var ModalWindow = function (_React$Component) {
           _react2.default.createElement(
             "section",
             null,
-            "Description tbd"
+            this.props.children
           )
         )
       );
@@ -21107,7 +21172,7 @@ var ModalWindow = function (_React$Component) {
 
 exports.default = ModalWindow;
 
-},{"react":31}],34:[function(require,module,exports){
+},{"react":31}],35:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21120,9 +21185,9 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ModalWindow = require("./ModalWindow");
+var _LoginModal = require("./LoginModal");
 
-var _ModalWindow2 = _interopRequireDefault(_ModalWindow);
+var _LoginModal2 = _interopRequireDefault(_LoginModal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21202,7 +21267,7 @@ var Navbar = function (_React$Component) {
           this.renderSearch(),
           this.renderCurrentUser()
         ),
-        _react2.default.createElement(_ModalWindow2.default, { status: this.state.modalStatus, hideLoginModal: this.hideLoginModal })
+        _react2.default.createElement(_LoginModal2.default, { status: this.state.modalStatus, hideLoginModal: this.hideLoginModal })
       );
     }
   }]);
@@ -21212,7 +21277,7 @@ var Navbar = function (_React$Component) {
 
 exports.default = Navbar;
 
-},{"./ModalWindow":33,"react":31}],35:[function(require,module,exports){
+},{"./LoginModal":33,"react":31}],36:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21316,7 +21381,7 @@ var QuestionItem = function (_React$Component) {
 
 exports.default = QuestionItem;
 
-},{"react":31}],36:[function(require,module,exports){
+},{"react":31}],37:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21370,7 +21435,7 @@ var QuestionList = function (_React$Component) {
 
 exports.default = QuestionList;
 
-},{"./QuestionItem":35,"react":31}],37:[function(require,module,exports){
+},{"./QuestionItem":36,"react":31}],38:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21425,4 +21490,4 @@ var App = function (_React$Component) {
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("root"));
 
-},{"./HomePage":32,"./Navbar":34,"react":31,"react-dom":28}]},{},[37]);
+},{"./HomePage":32,"./Navbar":35,"react":31,"react-dom":28}]},{},[38]);

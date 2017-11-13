@@ -1,5 +1,5 @@
 import React from "react";
-import ModalWindow from "./ModalWindow";
+import LoginModal from "./LoginModal";
 
 class Navbar extends React.Component {
   constructor() {
@@ -52,7 +52,7 @@ class Navbar extends React.Component {
           {this.renderSearch()}
           {this.renderCurrentUser()}
         </section>
-        <ModalWindow status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
+        <LoginModal status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
       </section>
     );
   }

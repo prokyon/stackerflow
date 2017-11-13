@@ -9,7 +9,7 @@ class ModalWindow extends React.Component {
         </section>
 
         <section className="modal-content">
-          <section>Description tbd</section>
+          <section>{this.props.children}</section>
         </section>
       </section>
     );
