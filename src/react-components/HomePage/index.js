@@ -4,6 +4,8 @@ import QuestionList from "../Question/QuestionList";
 class HomePage extends React.Component {
   constructor() {
     super();
+
+    // dummy data
     this.state = {
       questionList: [
         {

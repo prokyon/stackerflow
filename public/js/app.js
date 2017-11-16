@@ -20975,6 +20975,7 @@ var HomePage = function (_React$Component) {
   function HomePage() {
     _classCallCheck(this, HomePage);
 
+    // dummy data
     var _this = _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this));
 
     _this.state = {
@@ -21583,20 +21584,80 @@ var AnswerModal = function (_React$Component) {
   function AnswerModal() {
     _classCallCheck(this, AnswerModal);
 
-    return _possibleConstructorReturn(this, (AnswerModal.__proto__ || Object.getPrototypeOf(AnswerModal)).apply(this, arguments));
+    // dummy data
+    var _this = _possibleConstructorReturn(this, (AnswerModal.__proto__ || Object.getPrototypeOf(AnswerModal)).call(this));
+
+    _this.state = {
+      question: {
+        id: 2,
+        name: 'What career opportunities does a CS degree offer me?',
+        link: 'https://www-cs.stanford.edu/',
+        media: '/img/stanford.jpg',
+        likes: 65,
+        description: 'I want to apply at Stanford soon!',
+        user: {
+          name: 'Lois Griffin',
+          avatar: '/img/lois.png'
+        }
+      }
+    };
+    return _this;
   }
 
   _createClass(AnswerModal, [{
+    key: "renderLikeButton",
+    value: function renderLikeButton() {
+      return _react2.default.createElement(
+        "a",
+        { className: "like-button", href: "#" },
+        _react2.default.createElement(
+          "span",
+          null,
+          _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
+        ),
+        _react2.default.createElement("br", null),
+        this.state.question.likes
+      );
+    }
+  }, {
+    key: "renderHeader",
+    value: function renderHeader() {
+      return _react2.default.createElement(
+        "header",
+        { style: { backgroundImage: "url(" + this.state.question.media + ")" } },
+        _react2.default.createElement(
+          "section",
+          { className: "header-shadow" },
+          _react2.default.createElement(
+            "h1",
+            null,
+            this.state.question.name
+          ),
+          _react2.default.createElement(
+            "p",
+            null,
+            this.state.question.description
+          ),
+          _react2.default.createElement(
+            "section",
+            null,
+            this.renderLikeButton(),
+            _react2.default.createElement(
+              "a",
+              { className: "visit-link-button", href: this.state.question.link, target: "_blank" },
+              "Visit Link"
+            )
+          )
+        )
+      );
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
         _ModalWindow2.default,
         _extends({}, this.props, { style: "product-modal-window" }),
-        _react2.default.createElement(
-          "h2",
-          null,
-          "Question title here"
-        )
+        this.renderHeader()
       );
     }
   }]);
