@@ -21599,7 +21599,16 @@ var AnswerModal = function (_React$Component) {
           name: 'Lois Griffin',
           avatar: '/img/lois.png'
         }
-      }
+      },
+      answers: [{
+        name: "Ned Flanders",
+        avatar: "/img/user.png",
+        reply: "This is a helpful Stackerflow answer. Lorem ipsum..."
+      }, {
+        name: "Nelson",
+        avatar: "/img/user.png",
+        reply: "Ha ha! Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+      }]
     };
     return _this;
   }
@@ -21667,7 +21676,8 @@ var AnswerModal = function (_React$Component) {
           { className: "post-answer" },
           _react2.default.createElement("img", { className: "avatar-medium", src: "/img/user.png" }),
           _react2.default.createElement("input", { placeholder: "Enter your answer here" })
-        )
+        ),
+        this.renderCommunityAnswers()
       );
     }
   }, {
@@ -21681,6 +21691,35 @@ var AnswerModal = function (_React$Component) {
           null,
           this.renderAnswerField()
         )
+      );
+    }
+  }, {
+    key: "renderCommunityAnswers",
+    value: function renderCommunityAnswers() {
+      return _react2.default.createElement(
+        "ul",
+        { className: "answer-list" },
+        this.state.answers.map(function (answer, idx) {
+          return _react2.default.createElement(
+            "li",
+            { key: idx },
+            _react2.default.createElement("img", { className: "avatar-small", src: answer.avatar }),
+            _react2.default.createElement(
+              "section",
+              null,
+              _react2.default.createElement(
+                "strong",
+                null,
+                answer.name
+              ),
+              _react2.default.createElement(
+                "p",
+                null,
+                answer.reply
+              )
+            )
+          );
+        })
       );
     }
   }, {

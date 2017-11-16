@@ -18,7 +18,19 @@ class AnswerModal extends React.Component {
           name: 'Lois Griffin',
           avatar: '/img/lois.png'
         }
-      }
+      },
+      answers: [
+        {
+          name: "Ned Flanders",
+          avatar: "/img/user.png",
+          reply: "This is a helpful Stackerflow answer. Lorem ipsum..."
+        },
+        {
+          name: "Nelson",
+          avatar: "/img/user.png",
+          reply: "Ha ha! Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+        }
+      ]
     }
   }
 
@@ -57,6 +69,7 @@ class AnswerModal extends React.Component {
           <img className="avatar-medium" src="/img/user.png"/>
           <input placeholder="Enter your answer here"/>
         </section>
+        {this.renderCommunityAnswers()}
       </section>
     );
   }
@@ -68,6 +81,26 @@ class AnswerModal extends React.Component {
           {this.renderAnswerField()}
         </main>
       </section>
+    );
+  }
+
+  renderCommunityAnswers() {
+    return (
+      <ul className="answer-list">
+        {
+          this.state.answers.map(function(answer, idx) {
+            return (
+              <li key={idx}>
+                <img className="avatar-small" src={answer.avatar}/>
+                <section>
+                  <strong>{answer.name}</strong>
+                  <p>{answer.reply}</p>
+                </section>
+              </li>
+            );
+          })
+        }
+      </ul>
     );
   }
 
