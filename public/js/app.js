@@ -21656,7 +21656,7 @@ var AnswerModal = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _ModalWindow2.default,
-        _extends({}, this.props, { style: "product-modal-window" }),
+        _extends({}, this.props, { style: "question-modal" }),
         this.renderHeader()
       );
     }

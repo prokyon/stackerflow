@@ -2,14 +2,13 @@
 A simple Q&A platform. People can ask questions and receive comments and upvotes from peer users.
 
 ## Technology Stack
-- JavaScript ([ECMAScript 6](http://es6-features.org/#Constants))
+- JavaScript ([ES6](http://es6-features.org/))
 - [Node.js](https://nodejs.org/en/)
 - [React.js](https://reactjs.org/)
-- Facebooks [Flux app architecture](http://richardkho.com/demystifying-flux/)
-- [Google Firebase](https://firebase.google.com/)
+- [Firebase DB](https://firebase.google.com/)
 
 ## Prerequisites
-...tbd...
+- Make sure to have [Node.js](https://nodejs.org/en/) installed
 
 ## Setup
 - Install all dependencies by running ```$ sudo npm install```

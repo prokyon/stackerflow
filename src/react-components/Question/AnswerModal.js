@@ -51,7 +51,7 @@ class AnswerModal extends React.Component {
 
   render() {
     return (
-      <ModalWindow {...this.props} style="product-modal-window">
+      <ModalWindow {...this.props} style="question-modal">
         {this.renderHeader()}
       </ModalWindow>
     );

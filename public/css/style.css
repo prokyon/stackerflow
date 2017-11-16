@@ -231,7 +231,7 @@ a {
 .modal .modal-content {
 	position: fixed;
 }
-/*------------------------------ Sign in modal ------------------------------*/
+/*------------------------------ Sign-In Modal ------------------------------*/
 
 button {
 	border-radius: 20px;
@@ -259,7 +259,7 @@ button:hover {
 	background-color: #3b5998;
 	margin: 20px;
 }
-/*------------------------------ Post question modal ------------------------------*/
+/*------------------------------ Post Question Modal ------------------------------*/
 .post-modal-window {
 	width: 90%;
 	right: 0;
@@ -318,6 +318,56 @@ button:hover {
 	font-size: 13px;
 	width: 100%;
 }
+/*------------------------------ Question Details Modal ------------------------------*/
+.question-modal {
+	width: 80%;
+	height: 100%;
+	right: 0;
+	top: 0;
+	background-color: white;
+	overflow: scroll;
+	border-left: 1px solid #f0efef;
+}
+
+.question-modal header {
+	text-align: center;
+	background-color: #5e9aee;
+	background-position: 50% 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.question-modal header .header-shadow {
+	background-color: transparent;
+	background-image: linear-gradient(-225deg, rgba(0, 101, 168, 0.6) 0%, rbga(0, 36, 61, 0.6) 50%);
+	padding: 50px;
+}
+
+.question-modal header .header-shadow > h1 {
+	font-size: 40px;
+	font-weight: 900;
+	color: white;
+	line-height: 50px;
+}
+
+.question-modal header .header-shadow > p {
+	line-height: 60px;
+	font-size: 20px;
+	color: #cdd1d3;
+}
+
+.question-modal header .header-shadow > section > * {
+  display: inline-block;
+	vertical-align: middle;
+}
+
+.question-modal header .header-shadow > section .visit-link-button {
+  border-radius: 5px;
+	padding: 15px 30px;
+	background-color: #5898f1;
+	color: white;
+}
+
 /*------------------------------ Profile Dropdown Menu ------------------------------*/
 .profile-menu .profile-button {
 	opacity: 0.9;
