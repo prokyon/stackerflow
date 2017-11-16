@@ -49,10 +49,33 @@ class AnswerModal extends React.Component {
     );
   }
 
+  renderAnswerField() {
+    return (
+      <section className="answers">
+        <h2>Answers</h2>
+        <section className="post-answer">
+          <img className="avatar-medium" src="/img/user.png"/>
+          <input placeholder="Enter your answer here"/>
+        </section>
+      </section>
+    );
+  }
+
+  renderAnswerBox() {
+    return (
+      <section className="question-modal-body">
+        <main>
+          {this.renderAnswerField()}
+        </main>
+      </section>
+    );
+  }
+
   render() {
     return (
       <ModalWindow {...this.props} style="question-modal">
         {this.renderHeader()}
+        {this.renderAnswerBox()}
       </ModalWindow>
     );
   }

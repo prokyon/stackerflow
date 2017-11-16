@@ -368,6 +368,38 @@ button:hover {
 	color: white;
 }
 
+.question-modal .question-modal-body main .answers {
+	margin: 45px auto;
+	width: 75%;
+}
+
+.question-modal .question-modal-body main .answers h2 {
+	color: #999;
+	padding-bottom: 20px;
+}
+
+.question-modal .question-modal-body main .answers .post-answer {
+	margin: 10px 0;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 3px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-tems: center;
+	align-items: center;
+}
+
+.question-modal .question-modal-body main .answers .post-answer img {
+	margin-right: 20px;
+}
+
+.question-modal .question-modal-body main .answers .post-answer input {
+	padding: 10px;
+	font-size: 20px;
+	width: 90%;
+	border: 1px solid #f0efef;
+}
+
 /*------------------------------ Profile Dropdown Menu ------------------------------*/
 .profile-menu .profile-button {
 	opacity: 0.9;

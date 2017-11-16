@@ -7,10 +7,8 @@ A simple Q&A platform. People can ask questions and receive comments and upvotes
 - [React.js](https://reactjs.org/)
 - [Firebase DB](https://firebase.google.com/)
 
-## Prerequisites
-- Make sure to have [Node.js](https://nodejs.org/en/) installed
-
 ## Setup
+- Make sure to have [Node.js](https://nodejs.org/en/) installed
 - Install all dependencies by running ```$ sudo npm install```
 - Run ```$ npm run build:watch```
 - In a new tab, run ```$ npm start```

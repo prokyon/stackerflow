@@ -21652,12 +21652,45 @@ var AnswerModal = function (_React$Component) {
       );
     }
   }, {
+    key: "renderAnswerField",
+    value: function renderAnswerField() {
+      return _react2.default.createElement(
+        "section",
+        { className: "answers" },
+        _react2.default.createElement(
+          "h2",
+          null,
+          "Answers"
+        ),
+        _react2.default.createElement(
+          "section",
+          { className: "post-answer" },
+          _react2.default.createElement("img", { className: "avatar-medium", src: "/img/user.png" }),
+          _react2.default.createElement("input", { placeholder: "Enter your answer here" })
+        )
+      );
+    }
+  }, {
+    key: "renderAnswerBox",
+    value: function renderAnswerBox() {
+      return _react2.default.createElement(
+        "section",
+        { className: "question-modal-body" },
+        _react2.default.createElement(
+          "main",
+          null,
+          this.renderAnswerField()
+        )
+      );
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
         _ModalWindow2.default,
         _extends({}, this.props, { style: "question-modal" }),
-        this.renderHeader()
+        this.renderHeader(),
+        this.renderAnswerBox()
       );
     }
   }]);
