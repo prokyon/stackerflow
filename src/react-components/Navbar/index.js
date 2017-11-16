@@ -1,6 +1,7 @@
 import React from "react";
 import LoginModal from "./LoginModal";
 import PostQuestionModal from "./PostQuestionModal";
+import ProfileDropDownMenu from "./ProfileDropDownMenu";
 
 class Navbar extends React.Component {
   constructor() {
@@ -47,6 +48,7 @@ class Navbar extends React.Component {
           <section>
             <span>
               <a href="#" onClick={this.showLoginModal} className="login-button">Create Question</a>
+              <ProfileDropDownMenu/>
             </span>
             <PostQuestionModal status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
           </section>
