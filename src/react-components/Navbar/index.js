@@ -1,5 +1,6 @@
 import React from "react";
 import LoginModal from "./LoginModal";
+import PostQuestionModal from "./PostQuestionModal";
 
 class Navbar extends React.Component {
   constructor() {
@@ -39,7 +40,23 @@ class Navbar extends React.Component {
   renderCurrentUser() {
     return (
       <section className="right">
-        <a href="#" onClick={this.showLoginModal} className="login-button">Login</a>
+        {
+          this.props.user
+          ?
+          // User logged in
+          <section>
+            <span>
+              <a href="#" onClick={this.showLoginModal} className="login-button">Create Question</a>
+            </span>
+            <PostQuestionModal status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
+          </section>
+          :
+          // User logged out
+          <section>
+            <a href="#" onClick={this.showLoginModal} className="login-button">Login</a>
+            <LoginModal status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
+          </section>
+        }
       </section>
     );
   }
@@ -52,7 +69,6 @@ class Navbar extends React.Component {
           {this.renderSearch()}
           {this.renderCurrentUser()}
         </section>
-        <LoginModal status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
       </section>
     );
   }

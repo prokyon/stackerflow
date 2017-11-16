@@ -21039,12 +21039,14 @@ var HomePage = function (_React$Component) {
 
 exports.default = HomePage;
 
-},{"../Question/QuestionList":37,"react":31}],33:[function(require,module,exports){
+},{"../Question/QuestionList":38,"react":31}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -21078,7 +21080,7 @@ var LoginModal = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _ModalWindow2.default,
-        this.props,
+        _extends({}, this.props, { style: "login-modal" }),
         _react2.default.createElement("img", { src: "/img/stackerflow_logo.png" }),
         _react2.default.createElement(
           "h1",
@@ -21092,7 +21094,7 @@ var LoginModal = function (_React$Component) {
         ),
         _react2.default.createElement(
           "button",
-          { className: "facebook-signin" },
+          { className: "facebook-button" },
           "Sign in with Facebook"
         )
       );
@@ -21147,7 +21149,7 @@ var ModalWindow = function (_React$Component) {
         ),
         _react2.default.createElement(
           "section",
-          { className: "modal-content login-modal" },
+          { className: "modal-content " + this.props.style },
           _react2.default.createElement(
             "section",
             null,
@@ -21179,6 +21181,147 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ModalWindow = require("./ModalWindow");
+
+var _ModalWindow2 = _interopRequireDefault(_ModalWindow);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PostQuestionModal = function (_React$Component) {
+  _inherits(PostQuestionModal, _React$Component);
+
+  function PostQuestionModal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, PostQuestionModal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostQuestionModal.__proto__ || Object.getPrototypeOf(PostQuestionModal)).call.apply(_ref, [this].concat(args))), _this), _this.postQuestion = function () {}, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(PostQuestionModal, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        _ModalWindow2.default,
+        _extends({}, this.props, { style: "post-modal-window" }),
+        _react2.default.createElement(
+          "header",
+          null,
+          "Post a question"
+        ),
+        _react2.default.createElement(
+          "section",
+          null,
+          _react2.default.createElement(
+            "table",
+            null,
+            _react2.default.createElement(
+              "tbody",
+              null,
+              _react2.default.createElement(
+                "tr",
+                null,
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  "Title"
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  _react2.default.createElement("input", { placeholder: "Please enter your question title." })
+                )
+              ),
+              _react2.default.createElement(
+                "tr",
+                null,
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  "Description"
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  _react2.default.createElement("input", { placeholder: "Please enter your question description" })
+                )
+              ),
+              _react2.default.createElement(
+                "tr",
+                null,
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  "Tags"
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  _react2.default.createElement("input", { placeholder: "Please enter tags" })
+                )
+              ),
+              _react2.default.createElement(
+                "tr",
+                null,
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  "Image"
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  _react2.default.createElement("input", { placeholder: "Please enter link to image" })
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "footer",
+          { className: "post-footer" },
+          _react2.default.createElement(
+            "button",
+            { className: "post-button", onClick: this.postQuestion },
+            "Post question"
+          )
+        )
+      );
+    }
+  }]);
+
+  return PostQuestionModal;
+}(_react2.default.Component);
+
+exports.default = PostQuestionModal;
+
+},{"./ModalWindow":34,"react":31}],36:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require("react");
@@ -21188,6 +21331,10 @@ var _react2 = _interopRequireDefault(_react);
 var _LoginModal = require("./LoginModal");
 
 var _LoginModal2 = _interopRequireDefault(_LoginModal);
+
+var _PostQuestionModal = require("./PostQuestionModal");
+
+var _PostQuestionModal2 = _interopRequireDefault(_PostQuestionModal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21247,10 +21394,32 @@ var Navbar = function (_React$Component) {
       return _react2.default.createElement(
         "section",
         { className: "right" },
+        this.props.user ?
+        // User logged in
         _react2.default.createElement(
-          "a",
-          { href: "#", onClick: this.showLoginModal, className: "login-button" },
-          "Login"
+          "section",
+          null,
+          _react2.default.createElement(
+            "span",
+            null,
+            _react2.default.createElement(
+              "a",
+              { href: "#", onClick: this.showLoginModal, className: "login-button" },
+              "Create Question"
+            )
+          ),
+          _react2.default.createElement(_PostQuestionModal2.default, { status: this.state.modalStatus, hideLoginModal: this.hideLoginModal })
+        ) :
+        // User logged out
+        _react2.default.createElement(
+          "section",
+          null,
+          _react2.default.createElement(
+            "a",
+            { href: "#", onClick: this.showLoginModal, className: "login-button" },
+            "Login"
+          ),
+          _react2.default.createElement(_LoginModal2.default, { status: this.state.modalStatus, hideLoginModal: this.hideLoginModal })
         )
       );
     }
@@ -21266,8 +21435,7 @@ var Navbar = function (_React$Component) {
           this.renderStackerFlowLogo(),
           this.renderSearch(),
           this.renderCurrentUser()
-        ),
-        _react2.default.createElement(_LoginModal2.default, { status: this.state.modalStatus, hideLoginModal: this.hideLoginModal })
+        )
       );
     }
   }]);
@@ -21277,7 +21445,7 @@ var Navbar = function (_React$Component) {
 
 exports.default = Navbar;
 
-},{"./LoginModal":33,"react":31}],36:[function(require,module,exports){
+},{"./LoginModal":33,"./PostQuestionModal":35,"react":31}],37:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21381,7 +21549,7 @@ var QuestionItem = function (_React$Component) {
 
 exports.default = QuestionItem;
 
-},{"react":31}],37:[function(require,module,exports){
+},{"react":31}],38:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21435,7 +21603,7 @@ var QuestionList = function (_React$Component) {
 
 exports.default = QuestionList;
 
-},{"./QuestionItem":36,"react":31}],38:[function(require,module,exports){
+},{"./QuestionItem":37,"react":31}],39:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21479,7 +21647,7 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         "section",
         null,
-        _react2.default.createElement(_Navbar2.default, null),
+        _react2.default.createElement(_Navbar2.default, { user: false }),
         _react2.default.createElement(_HomePage2.default, null)
       );
     }
@@ -21490,4 +21658,4 @@ var App = function (_React$Component) {
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("root"));
 
-},{"./HomePage":32,"./Navbar":35,"react":31,"react-dom":28}]},{},[38]);
+},{"./HomePage":32,"./Navbar":36,"react":31,"react-dom":28}]},{},[39]);

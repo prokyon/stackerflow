@@ -3,12 +3,12 @@ import ModalWindow from "./ModalWindow";
 
 class PostQuestionModal extends React.Component {
   postQuestion = () => {
-    
+
   };
 
   render() {
     return (
-      <ModalWindow {...this.props} style="post-question-modal">
+      <ModalWindow {...this.props} style="post-modal-window">
         <header>
           Post a question
         </header>
@@ -19,25 +19,25 @@ class PostQuestionModal extends React.Component {
               <tr>
                 <td>Title</td>
                 <td>
-                  <input placeholder="Please enter your question title.">
+                  <input placeholder="Please enter your question title."/>
                 </td>
               </tr>
               <tr>
                 <td>Description</td>
                 <td>
-                  <input placeholder="Please enter your question description">
+                  <input placeholder="Please enter your question description"/>
                 </td>
               </tr>
               <tr>
                 <td>Tags</td>
                 <td>
-                  <input placeholder="Please enter tags">
+                  <input placeholder="Please enter tags"/>
                 </td>
               </tr>
               <tr>
                 <td>Image</td>
                 <td>
-                  <input placeholder="Please enter link to image">
+                  <input placeholder="Please enter link to image"/>
                 </td>
               </tr>
             </tbody>
