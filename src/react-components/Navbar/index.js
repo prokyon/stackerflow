@@ -50,13 +50,13 @@ class Navbar extends React.Component {
               <a href="#" onClick={this.showLoginModal} className="login-button">Create Question</a>
               <ProfileDropDownMenu/>
             </span>
-            <PostQuestionModal status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
+            <PostQuestionModal status={this.state.modalStatus} hideModal={this.hideLoginModal}/>
           </section>
           :
           // User logged out
           <section>
             <a href="#" onClick={this.showLoginModal} className="login-button">Login</a>
-            <LoginModal status={this.state.modalStatus} hideLoginModal={this.hideLoginModal}/>
+            <LoginModal status={this.state.modalStatus} hideModal={this.hideLoginModal}/>
           </section>
         }
       </section>

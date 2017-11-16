@@ -1,10 +1,27 @@
 import React from "react";
+import AnswerModal from "./AnswerModal";
 
 class QuestionItem extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      answerModalStatus: false
+    }
+  }
+
+  showAnswerModal = () => {
+    this.setState({answerModalStatus: true});
+  };
+
+  hideAnswerModal = () => {
+    this.setState({answerModalStatus: false});
+  };
+
   renderQuestionDetails() {
     return (
       <section className="question-item-info">
-        <a href="#">
+        <a href="#" onClick={this.showAnswerModal}>
           <h2>{this.props.name}</h2>
         </a>
         <p>{this.props.description}</p>
@@ -44,6 +61,7 @@ class QuestionItem extends React.Component {
         <img className="question-item-media" src={this.props.media} />
         {this.renderQuestionDetails()}
         {this.renderExternalLink()}
+        <AnswerModal status={this.state.answerModalStatus} hideModal={this.hideAnswerModal} />
       </li>
     );
   }

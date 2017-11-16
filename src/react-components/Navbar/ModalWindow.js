@@ -5,7 +5,7 @@ class ModalWindow extends React.Component {
     return (
       <section className="modal">
         <section className="modal-wrap">
-          <img src="/img/close.png" onClick={this.props.hideLoginModal}/>
+          <img src="/img/close.png" onClick={this.props.hideModal}/>
         </section>
 
         <section className={"modal-content " + this.props.style}>
