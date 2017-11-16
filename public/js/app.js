@@ -186,10 +186,6 @@ process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
 module.exports={
-  "facebook" : {
-    "appId": "172073683377859",
-    "appSecret": "45550e636b88559e327dec9b70616a2d"
-  },
   "firebase" : {
     "apiKey": "AIzaSyDcn_krLNGKHRvlsWqIp_pw50BEhzXRB5E",
     "authDomain": "stackerflow-b9358.firebaseapp.com",
