@@ -1,39 +1,35 @@
 import React from "react";
+import Firebase from "firebase";
 import QuestionList from "../Question/QuestionList";
+
+const config = require("../../../config/config");
+
+const firebase_config = {
+    apiKey: config.firebase.apiKey,
+    authDomain: config.firebase.authDomain,
+    databaseURL: config.firebase.databaseURL,
+    projectId: config.firebase.projectId,
+    storageBucket: config.firebase.storageBucket,
+    messagingSenderId: config.firebase.messagingSenderId
+};
+
+Firebase.initializeApp(firebase_config);
 
 class HomePage extends React.Component {
   constructor() {
     super();
 
-    // dummy data
     this.state = {
-      questionList: [
-        {
-          id: 1,
-          name: 'How do I learn React?',
-          link: 'https://www.udacity.com/course/react-nanodegree--nd019',
-          media: '/img/udacity.png',
-          likes: 148,
-          description: 'Can anyone recommend the Udacity course?',
-          user: {
-            name: 'Peter Griffin',
-            avatar: '/img/peter.jpg'
-          }
-        },
-        {
-          id: 2,
-          name: 'What career opportunities does a CS degree offer me?',
-          link: 'https://www-cs.stanford.edu/',
-          media: '/img/stanford.jpg',
-          likes: 65,
-          description: 'I want to apply at Stanford soon!',
-          user: {
-            name: 'Lois Griffin',
-            avatar: '/img/lois.png'
-          }
-        }
-      ]
+      questionList: []
     }
+
+    Firebase.database().ref("questions").on("value", (snapshot) => {
+      var questions = snapshot.val();
+
+      this.setState({
+        questionList: questions
+      })
+    });
   }
 
   render() {
