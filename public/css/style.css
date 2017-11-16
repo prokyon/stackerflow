@@ -400,6 +400,29 @@ button:hover {
 	border: 1px solid #f0efef;
 }
 
+.answer-list li {
+	padding: 20px 0;
+}
+
+.answer-list li > * {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.answer-list li > section {
+	margin-left: 15px;
+}
+
+.answer-list li > section strong {
+	font-size: 14px;
+	font-weight: 600;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+.answer-list li > section p {
+	font-size: 14px;
+}
 /*------------------------------ Profile Dropdown Menu ------------------------------*/
 .profile-menu .profile-button {
 	opacity: 0.9;
