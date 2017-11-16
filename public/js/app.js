@@ -21226,7 +21226,7 @@ var PostQuestionModal = function (_React$Component) {
         _extends({}, this.props, { style: "post-modal-window" }),
         _react2.default.createElement(
           "header",
-          null,
+          { className: "post-header" },
           "Post a question"
         ),
         _react2.default.createElement(
@@ -21647,7 +21647,7 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         "section",
         null,
-        _react2.default.createElement(_Navbar2.default, { user: false }),
+        _react2.default.createElement(_Navbar2.default, { user: true }),
         _react2.default.createElement(_HomePage2.default, null)
       );
     }

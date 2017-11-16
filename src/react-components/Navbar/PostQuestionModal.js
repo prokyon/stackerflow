@@ -9,7 +9,7 @@ class PostQuestionModal extends React.Component {
   render() {
     return (
       <ModalWindow {...this.props} style="post-modal-window">
-        <header>
+        <header className="post-header">
           Post a question
         </header>
 
