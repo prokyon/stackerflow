@@ -21342,10 +21342,45 @@ var ProfileDropDownMenu = function (_React$Component) {
   function ProfileDropDownMenu() {
     _classCallCheck(this, ProfileDropDownMenu);
 
-    return _possibleConstructorReturn(this, (ProfileDropDownMenu.__proto__ || Object.getPrototypeOf(ProfileDropDownMenu)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (ProfileDropDownMenu.__proto__ || Object.getPrototypeOf(ProfileDropDownMenu)).call(this));
+
+    _this.menuListener = function () {
+      if (_this.state.showProfileNavbar) {
+        _this.setState({ showProfileNavbar: false });
+      } else {
+        _this.setState({ showProfileNavbar: true });
+      }
+    };
+
+    _this.clickOutsideListener = function (e) {
+      if (e.target != _this.refs.profileButton) {
+        _this.setState({ showProfileNavbar: false });
+      }
+    };
+
+    _this.state = {
+      showProfileNavbar: false
+    };
+    return _this;
   }
 
   _createClass(ProfileDropDownMenu, [{
+    key: "componentWillMount",
+
+
+    // https://reactjs.org/docs/react-component.html#componentwillmount
+    value: function componentWillMount() {
+      window.addEventListener("click", this.clickOutsideListener, false);
+    }
+
+    // https://reactjs.org/docs/react-component.html#componentwillunmount
+
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener("click", this.clickOutsideListener, false);
+    }
+  }, {
     key: "renderProfileNavbarButton",
     value: function renderProfileNavbarButton() {
       return _react2.default.createElement(
@@ -21369,8 +21404,8 @@ var ProfileDropDownMenu = function (_React$Component) {
       return _react2.default.createElement(
         "section",
         { className: "profile-menu" },
-        _react2.default.createElement("img", { src: "/img/user.png", className: "profile-button avatar-medium" }),
-        this.renderProfileNavbarButton()
+        _react2.default.createElement("img", { src: "/img/user.png", onClick: this.menuListener, ref: "profileButton", className: "profile-button avatar-medium" }),
+        this.state.showProfileNavbar ? this.renderProfileNavbarButton() : null
       );
     }
   }]);
