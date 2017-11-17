@@ -44,7 +44,7 @@ class QuestionItem extends React.Component {
   }
 
   likeListener = () => {
-    Actions.addLike(this.props.qid, this.props.user)
+    Actions.addLike(this.props.qid, this.props.user.id)
   }
 
   renderLikeButton() {

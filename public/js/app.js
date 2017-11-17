@@ -64987,13 +64987,20 @@ var Actions = function () {
     key: "addLike",
     value: function addLike(questionId, userId) {
       return function (dispatch) {
-        var firebaseRef = _firebase2.default.database().ref('questions/' + questionId + '/like');
+        var likeCountRef = _firebase2.default.database().ref('likes/' + questionId + '/' + userId);
+        var likeRef = _firebase2.default.database().ref('questions/' + questionId + '/likes');
 
-        var like = 0;
-        firebaseRef.on('value', function (snapshot) {
-          like = snapshot.val();
+        likeCountRef.on('value', function (snapshot) {
+          if (snapshot.val() == null) {
+            likeCountRef.set(true);
+
+            var likeCount = 0;
+            likeRef.on('value', function (snapshot) {
+              likeCount = snapshot.val();
+            });
+            likeRef.set(likeCount + 1);
+          }
         });
-        firebaseRef.set(like + 1);
       };
     }
   }]);
@@ -65908,7 +65915,7 @@ var QuestionItem = function (_React$Component) {
     };
 
     _this.likeListener = function () {
-      _actions2.default.addLike(_this.props.qid, _this.props.user);
+      _actions2.default.addLike(_this.props.qid, _this.props.user.id);
     };
 
     _this.state = {

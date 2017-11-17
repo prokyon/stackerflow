@@ -83,16 +83,23 @@ class Actions {
   }
 
   addLike(questionId, userId) {
-    return (dispatch) => {
-      var firebaseRef = Firebase.database().ref('questions/' + questionId + '/like');
+     return (dispatch) => {
+       var likeCountRef = Firebase.database().ref('likes/' + questionId + '/' + userId);
+       var likeRef = Firebase.database().ref('questions/' + questionId + '/likes');
 
-      var like = 0;
-      firebaseRef.on('value', function(snapshot) {
-        like = snapshot.val();
-      });
-      firebaseRef.set(like + 1);
-    }
-  }
+       likeCountRef.on('value', function(snapshot) {
+         if(snapshot.val() == null) {
+           likeCountRef.set(true);
+
+           var likeCount = 0;
+           likeRef.on('value', function(snapshot) {
+             likeCount = snapshot.val();
+           });
+           likeRef.set(likeCount + 1);
+         }
+       });
+     }
+   }
 }
 
 export default alt.createActions(Actions);
