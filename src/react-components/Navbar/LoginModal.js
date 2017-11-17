@@ -1,18 +1,11 @@
 import React from "react";
-import Firebase from "firebase";
 import ModalWindow from "./ModalWindow";
+import Actions from "../../actions";
 
 class LoginModal extends React.Component {
   facebookLogin = () => {
-    var provider = new Firebase.auth.FacebookAuthProvider();
-    provider.addScope('public_profile');
-
-    Firebase.auth().signInWithPopup(provider).then(function(result) {
-      var user = result.user;
-      console.log('Login successfully!', user);
-    }).catch(function(error) {
-      console.log('Failed!', error);
-    });
+    Actions.login();
+    this.props.hideLoginModal();
   };
 
   render() {
