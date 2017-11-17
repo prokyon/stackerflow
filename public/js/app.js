@@ -65003,6 +65003,13 @@ var Actions = function () {
         });
       };
     }
+  }, {
+    key: "addAnswer",
+    value: function addAnswer(questionId, answer) {
+      return function (dispatch) {
+        _firebase2.default.database().ref('/answers/' + questionId).push(answer);
+      };
+    }
   }]);
 
   return Actions;
@@ -65684,6 +65691,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _class;
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -65696,6 +65705,18 @@ var _Like = require("./Like");
 
 var _Like2 = _interopRequireDefault(_Like);
 
+var _connectToStores = require("alt-utils/lib/connectToStores");
+
+var _connectToStores2 = _interopRequireDefault(_connectToStores);
+
+var _QuestionStore = require("../../stores/QuestionStore");
+
+var _QuestionStore2 = _interopRequireDefault(_QuestionStore);
+
+var _actions = require("../../actions");
+
+var _actions2 = _interopRequireDefault(_actions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65704,7 +65725,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AnswerModal = function (_React$Component) {
+var AnswerModal = (0, _connectToStores2.default)(_class = function (_React$Component) {
   _inherits(AnswerModal, _React$Component);
 
   function AnswerModal() {
@@ -65712,6 +65733,19 @@ var AnswerModal = function (_React$Component) {
 
     // dummy data
     var _this = _possibleConstructorReturn(this, (AnswerModal.__proto__ || Object.getPrototypeOf(AnswerModal)).call(this));
+
+    _this.answerListener = function (e) {
+      // When pressing enter and answer is not empty
+      if (e.keyCode === 13 && e.target.value.length > 0) {
+        var answer = {
+          reply: e.target.value,
+          name: _this.props.user.name,
+          avatar: _this.props.user.avatar
+        };
+        _actions2.default.addAnswer(_this.props.qid, answer);
+        e.target.value = null; // set text box to empty
+      }
+    };
 
     _this.state = {
       answers: [{
@@ -65770,12 +65804,12 @@ var AnswerModal = function (_React$Component) {
           null,
           "Answers"
         ),
-        _react2.default.createElement(
+        this.props.user ? _react2.default.createElement(
           "section",
           { className: "post-answer" },
-          _react2.default.createElement("img", { className: "avatar-medium", src: "/img/user.png" }),
-          _react2.default.createElement("input", { placeholder: "Enter your answer here" })
-        ),
+          _react2.default.createElement("img", { className: "avatar-medium", src: this.props.user.avatar }),
+          _react2.default.createElement("input", { placeholder: "Enter your answer here", onKeyUp: this.answerListener })
+        ) : null,
         this.renderCommunityAnswers()
       );
     }
@@ -65831,14 +65865,24 @@ var AnswerModal = function (_React$Component) {
         this.renderAnswerBox()
       );
     }
+  }], [{
+    key: "getStores",
+    value: function getStores() {
+      return [_QuestionStore2.default];
+    }
+  }, {
+    key: "getPropsFromStores",
+    value: function getPropsFromStores() {
+      return _QuestionStore2.default.getState();
+    }
   }]);
 
   return AnswerModal;
-}(_react2.default.Component);
+}(_react2.default.Component)) || _class;
 
 exports.default = AnswerModal;
 
-},{"../Navbar/ModalWindow":211,"./Like":216,"react":205}],216:[function(require,module,exports){
+},{"../../actions":207,"../../stores/QuestionStore":220,"../Navbar/ModalWindow":211,"./Like":216,"alt-utils/lib/connectToStores":153,"react":205}],216:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

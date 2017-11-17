@@ -1,7 +1,11 @@
 import React from "react";
 import ModalWindow from "../Navbar/ModalWindow";
 import Like from "./Like";
+import connectToStores from "alt-utils/lib/connectToStores";
+import QuestionStore from "../../stores/QuestionStore";
+import Actions from "../../actions";
 
+@connectToStores
 class AnswerModal extends React.Component {
   constructor() {
     super();
@@ -23,6 +27,14 @@ class AnswerModal extends React.Component {
     }
   }
 
+  static getStores() {
+    return [QuestionStore];
+  }
+
+  static getPropsFromStores() {
+    return QuestionStore.getState();
+  }
+
   renderHeader() {
     return (
       <header style={{backgroundImage: "url(" + this.props.media + ")"}}>
@@ -38,14 +50,33 @@ class AnswerModal extends React.Component {
     );
   }
 
+  answerListener = (e) => {
+    // When pressing enter and answer is not empty
+    if(e.keyCode === 13 && e.target.value.length > 0) {
+      var answer = {
+        reply: e.target.value,
+        name: this.props.user.name,
+        avatar: this.props.user.avatar
+      }
+      Actions.addAnswer(this.props.qid, answer);
+      e.target.value = null; // set text box to empty
+    }
+  }
+
   renderAnswerField() {
     return (
       <section className="answers">
         <h2>Answers</h2>
-        <section className="post-answer">
-          <img className="avatar-medium" src="/img/user.png"/>
-          <input placeholder="Enter your answer here"/>
-        </section>
+        {
+          this.props.user
+          ?
+          <section className="post-answer">
+            <img className="avatar-medium" src={this.props.user.avatar}/>
+            <input placeholder="Enter your answer here" onKeyUp={this.answerListener}/>
+          </section>
+          :
+          null
+        }
         {this.renderCommunityAnswers()}
       </section>
     );
