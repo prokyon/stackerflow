@@ -1,4 +1,5 @@
 import React from "react";
+import Actions from "../../actions";
 
 class ProfileDropDownMenu extends React.Component {
   constructor() {
@@ -23,6 +24,11 @@ class ProfileDropDownMenu extends React.Component {
     }
   };
 
+  logoutListener = (e) => {
+    e.preventDefault();
+    Actions.logout();
+  };
+
   // https://reactjs.org/docs/react-component.html#componentwillmount
   componentWillMount() {
     window.addEventListener("click", this.clickOutsideListener, false);
@@ -37,7 +43,7 @@ class ProfileDropDownMenu extends React.Component {
     return (
       <nav className="profile-navbar" ref="profileNavbar">
         <a href="#">Profile Details</a>
-        <a href="#">Sign out</a>
+        <a href="#" onClick={this.logoutListener}>Sign out</a>
       </nav>
     );
   }

@@ -47805,6 +47805,27 @@ var Actions = function () {
   }
 
   _createClass(Actions, [{
+    key: "initSession",
+    value: function initSession() {
+      return function (dispatch) {
+        _firebase2.default.auth().onAuthStateChanged(function (result) {
+          var profile = null;
+
+          if (result) {
+            profile = {
+              id: result.uid,
+              name: result.providerData[0].displayName,
+              avatar: result.providerData[0].photoURL
+            };
+          }
+
+          setTimeout(function () {
+            return dispatch(profile);
+          });
+        });
+      };
+    }
+  }, {
     key: "login",
     value: function login() {
       return function (dispatch) {
@@ -47821,6 +47842,19 @@ var Actions = function () {
           dispatch(profile);
         }).catch(function (error) {
           console.log('Failed!', error);
+        });
+      };
+    }
+  }, {
+    key: "logout",
+    value: function logout() {
+      return function (dispatch) {
+        _firebase2.default.auth().signOut().then(function () {
+          setTimeout(function () {
+            return dispatch(null);
+          });
+        }, function (error) {
+          console.log(error);
         });
       };
     }
@@ -48248,6 +48282,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _actions = require("../../actions");
+
+var _actions2 = _interopRequireDefault(_actions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48276,6 +48314,11 @@ var ProfileDropDownMenu = function (_React$Component) {
       if (e.target != _this.refs.profileButton) {
         _this.setState({ showProfileNavbar: false });
       }
+    };
+
+    _this.logoutListener = function (e) {
+      e.preventDefault();
+      _actions2.default.logout();
     };
 
     _this.state = {
@@ -48313,7 +48356,7 @@ var ProfileDropDownMenu = function (_React$Component) {
         ),
         _react2.default.createElement(
           "a",
-          { href: "#" },
+          { href: "#", onClick: this.logoutListener },
           "Sign out"
         )
       );
@@ -48335,7 +48378,7 @@ var ProfileDropDownMenu = function (_React$Component) {
 
 exports.default = ProfileDropDownMenu;
 
-},{"react":204}],213:[function(require,module,exports){
+},{"../../actions":206,"react":204}],213:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48865,6 +48908,10 @@ var _QuestionStore = require("../stores/QuestionStore");
 
 var _QuestionStore2 = _interopRequireDefault(_QuestionStore);
 
+var _actions = require("../actions");
+
+var _actions2 = _interopRequireDefault(_actions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48879,7 +48926,10 @@ var App = (0, _connectToStores2.default)(_class = function (_React$Component) {
   function App() {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+    _actions2.default.initSession();
+    return _this;
   }
 
   _createClass(App, [{
@@ -48909,7 +48959,7 @@ var App = (0, _connectToStores2.default)(_class = function (_React$Component) {
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("root"));
 
-},{"../stores/QuestionStore":218,"./HomePage":208,"./Navbar":213,"alt-utils/lib/connectToStores":153,"react":204,"react-dom":201}],218:[function(require,module,exports){
+},{"../actions":206,"../stores/QuestionStore":218,"./HomePage":208,"./Navbar":213,"alt-utils/lib/connectToStores":153,"react":204,"react-dom":201}],218:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48964,7 +49014,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 }
 
 // ES7 syntax
-var QuestionStore = (_dec = (0, _decorators.decorate)(_alt2.default), _dec2 = (0, _decorators.bind)(_actions2.default.login), _dec(_class = (_class2 = function () {
+var QuestionStore = (_dec = (0, _decorators.decorate)(_alt2.default), _dec2 = (0, _decorators.bind)(_actions2.default.login, _actions2.default.initSession, _actions2.default.logout), _dec(_class = (_class2 = function () {
   function QuestionStore() {
     _classCallCheck(this, QuestionStore);
 
@@ -48972,14 +49022,14 @@ var QuestionStore = (_dec = (0, _decorators.decorate)(_alt2.default), _dec2 = (0
   }
 
   _createClass(QuestionStore, [{
-    key: "login",
-    value: function login(user) {
+    key: "setUser",
+    value: function setUser(user) {
       this.setState({ user: user });
     }
   }]);
 
   return QuestionStore;
-}(), (_applyDecoratedDescriptor(_class2.prototype, "login", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "login"), _class2.prototype)), _class2)) || _class);
+}(), (_applyDecoratedDescriptor(_class2.prototype, "setUser", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "setUser"), _class2.prototype)), _class2)) || _class);
 exports.default = _alt2.default.createStore(QuestionStore);
 
 },{"../actions":206,"../alt":207,"alt-utils/lib/decorators":154}]},{},[217]);

@@ -2,6 +2,23 @@ import alt from "../alt";
 import Firebase from "firebase";
 
 class Actions {
+  initSession() {
+    return (dispatch) => {
+      Firebase.auth().onAuthStateChanged(function(result) {
+        var profile = null;
+
+        if (result) {
+          profile = {
+            id: result.uid,
+            name: result.providerData[0].displayName,
+            avatar: result.providerData[0].photoURL
+          }
+        }
+
+        setTimeout(() => dispatch(profile));
+      });
+    }
+  }
 
   login() {
     return (dispatch) => {
@@ -18,6 +35,16 @@ class Actions {
         dispatch(profile);
       }).catch(function(error) {
         console.log('Failed!', error);
+      });
+    }
+  }
+
+  logout() {
+    return(dispatch) => {
+      Firebase.auth().signOut().then(function() {
+        setTimeout(() => dispatch(null));
+      }, function(error) {
+        console.log(error);
       });
     }
   }
