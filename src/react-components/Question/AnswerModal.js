@@ -7,18 +7,6 @@ class AnswerModal extends React.Component {
 
     // dummy data
     this.state = {
-      question: {
-        id: 2,
-        name: 'What career opportunities does a CS degree offer me?',
-        link: 'https://www-cs.stanford.edu/',
-        media: '/img/stanford.jpg',
-        likes: 65,
-        description: 'I want to apply at Stanford soon!',
-        user: {
-          name: 'Lois Griffin',
-          avatar: '/img/lois.png'
-        }
-      },
       answers: [
         {
           name: "Ned Flanders",
@@ -41,20 +29,20 @@ class AnswerModal extends React.Component {
           <i className="fa fa-thumbs-o-up"></i>
         </span>
         <br/>
-        {this.state.question.likes}
+        {this.props.likes}
       </a>
     );
   }
 
   renderHeader() {
     return (
-      <header style={{backgroundImage: "url(" + this.state.question.media + ")"}}>
+      <header style={{backgroundImage: "url(" + this.props.media + ")"}}>
         <section className="header-shadow">
-          <h1>{this.state.question.name}</h1>
-          <p>{this.state.question.description}</p>
+          <h1>{this.props.name}</h1>
+          <p>{this.props.description}</p>
           <section>
             {this.renderLikeButton()}
-            <a className="visit-link-button" href={this.state.question.link} target="_blank">Visit Link</a>
+            <a className="visit-link-button" href={this.props.link} target="_blank">Visit Link</a>
           </section>
         </section>
       </header>

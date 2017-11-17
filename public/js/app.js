@@ -65710,18 +65710,6 @@ var AnswerModal = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (AnswerModal.__proto__ || Object.getPrototypeOf(AnswerModal)).call(this));
 
     _this.state = {
-      question: {
-        id: 2,
-        name: 'What career opportunities does a CS degree offer me?',
-        link: 'https://www-cs.stanford.edu/',
-        media: '/img/stanford.jpg',
-        likes: 65,
-        description: 'I want to apply at Stanford soon!',
-        user: {
-          name: 'Lois Griffin',
-          avatar: '/img/lois.png'
-        }
-      },
       answers: [{
         name: "Ned Flanders",
         avatar: "/img/user.png",
@@ -65747,7 +65735,7 @@ var AnswerModal = function (_React$Component) {
           _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
         ),
         _react2.default.createElement("br", null),
-        this.state.question.likes
+        this.props.likes
       );
     }
   }, {
@@ -65755,19 +65743,19 @@ var AnswerModal = function (_React$Component) {
     value: function renderHeader() {
       return _react2.default.createElement(
         "header",
-        { style: { backgroundImage: "url(" + this.state.question.media + ")" } },
+        { style: { backgroundImage: "url(" + this.props.media + ")" } },
         _react2.default.createElement(
           "section",
           { className: "header-shadow" },
           _react2.default.createElement(
             "h1",
             null,
-            this.state.question.name
+            this.props.name
           ),
           _react2.default.createElement(
             "p",
             null,
-            this.state.question.description
+            this.props.description
           ),
           _react2.default.createElement(
             "section",
@@ -65775,7 +65763,7 @@ var AnswerModal = function (_React$Component) {
             this.renderLikeButton(),
             _react2.default.createElement(
               "a",
-              { className: "visit-link-button", href: this.state.question.link, target: "_blank" },
+              { className: "visit-link-button", href: this.props.link, target: "_blank" },
               "Visit Link"
             )
           )
@@ -65867,6 +65855,8 @@ exports.default = AnswerModal;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -65989,7 +65979,7 @@ var QuestionItem = function (_React$Component) {
         _react2.default.createElement("img", { className: "question-item-media", src: this.props.media }),
         this.renderQuestionDetails(),
         this.renderExternalLink(),
-        _react2.default.createElement(_AnswerModal2.default, { status: this.state.answerModalStatus, hideModal: this.hideAnswerModal })
+        _react2.default.createElement(_AnswerModal2.default, _extends({}, this.props, { status: this.state.answerModalStatus, hideModal: this.hideAnswerModal }))
       );
     }
   }], [{

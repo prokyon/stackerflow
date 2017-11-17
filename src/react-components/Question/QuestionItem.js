@@ -76,7 +76,7 @@ class QuestionItem extends React.Component {
         <img className="question-item-media" src={this.props.media} />
         {this.renderQuestionDetails()}
         {this.renderExternalLink()}
-        <AnswerModal status={this.state.answerModalStatus} hideModal={this.hideAnswerModal} />
+        <AnswerModal {...this.props} status={this.state.answerModalStatus} hideModal={this.hideAnswerModal} />
       </li>
     );
   }
