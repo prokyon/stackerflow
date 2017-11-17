@@ -65120,7 +65120,7 @@ var HomePage = (0, _connectToStores2.default)(_class = function (_React$Componen
 
 exports.default = HomePage;
 
-},{"../../actions":207,"../../stores/QuestionStore":219,"../Question/QuestionList":217,"alt-utils/lib/connectToStores":153,"react":205}],210:[function(require,module,exports){
+},{"../../actions":207,"../../stores/QuestionStore":220,"../Question/QuestionList":218,"alt-utils/lib/connectToStores":153,"react":205}],210:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65692,6 +65692,10 @@ var _ModalWindow = require("../Navbar/ModalWindow");
 
 var _ModalWindow2 = _interopRequireDefault(_ModalWindow);
 
+var _Like = require("./Like");
+
+var _Like2 = _interopRequireDefault(_Like);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65724,21 +65728,6 @@ var AnswerModal = function (_React$Component) {
   }
 
   _createClass(AnswerModal, [{
-    key: "renderLikeButton",
-    value: function renderLikeButton() {
-      return _react2.default.createElement(
-        "a",
-        { className: "like-button", href: "#" },
-        _react2.default.createElement(
-          "span",
-          null,
-          _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
-        ),
-        _react2.default.createElement("br", null),
-        this.props.likes
-      );
-    }
-  }, {
     key: "renderHeader",
     value: function renderHeader() {
       return _react2.default.createElement(
@@ -65760,7 +65749,7 @@ var AnswerModal = function (_React$Component) {
           _react2.default.createElement(
             "section",
             null,
-            this.renderLikeButton(),
+            _react2.default.createElement(_Like2.default, this.props),
             _react2.default.createElement(
               "a",
               { className: "visit-link-button", href: this.props.link, target: "_blank" },
@@ -65849,7 +65838,93 @@ var AnswerModal = function (_React$Component) {
 
 exports.default = AnswerModal;
 
-},{"../Navbar/ModalWindow":211,"react":205}],216:[function(require,module,exports){
+},{"../Navbar/ModalWindow":211,"./Like":216,"react":205}],216:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class;
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _actions = require("../../actions");
+
+var _actions2 = _interopRequireDefault(_actions);
+
+var _connectToStores = require("alt-utils/lib/connectToStores");
+
+var _connectToStores2 = _interopRequireDefault(_connectToStores);
+
+var _QuestionStore = require("../../stores/QuestionStore");
+
+var _QuestionStore2 = _interopRequireDefault(_QuestionStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Like = (0, _connectToStores2.default)(_class = function (_React$Component) {
+  _inherits(Like, _React$Component);
+
+  function Like() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Like);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Like.__proto__ || Object.getPrototypeOf(Like)).call.apply(_ref, [this].concat(args))), _this), _this.likeListener = function () {
+      _actions2.default.addLike(_this.props.qid, _this.props.user.id);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Like, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "a",
+        { className: "like-button", onClick: this.likeListener, href: "#" },
+        _react2.default.createElement(
+          "span",
+          null,
+          _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
+        ),
+        _react2.default.createElement("br", null),
+        this.props.likes
+      );
+    }
+  }], [{
+    key: "getStores",
+    value: function getStores() {
+      return [_QuestionStore2.default];
+    }
+  }, {
+    key: "getPropsFromStores",
+    value: function getPropsFromStores() {
+      return _QuestionStore2.default.getState();
+    }
+  }]);
+
+  return Like;
+}(_react2.default.Component)) || _class;
+
+exports.default = Like;
+
+},{"../../actions":207,"../../stores/QuestionStore":220,"alt-utils/lib/connectToStores":153,"react":205}],217:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65868,17 +65943,9 @@ var _AnswerModal = require("./AnswerModal");
 
 var _AnswerModal2 = _interopRequireDefault(_AnswerModal);
 
-var _actions = require("../../actions");
+var _Like = require("./Like");
 
-var _actions2 = _interopRequireDefault(_actions);
-
-var _connectToStores = require("alt-utils/lib/connectToStores");
-
-var _connectToStores2 = _interopRequireDefault(_connectToStores);
-
-var _QuestionStore = require("../../stores/QuestionStore");
-
-var _QuestionStore2 = _interopRequireDefault(_QuestionStore);
+var _Like2 = _interopRequireDefault(_Like);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65902,10 +65969,6 @@ var QuestionItem = function (_React$Component) {
 
     _this.hideAnswerModal = function () {
       _this.setState({ answerModalStatus: false });
-    };
-
-    _this.likeListener = function () {
-      _actions2.default.addLike(_this.props.qid, _this.props.user.id);
     };
 
     _this.state = {
@@ -65942,21 +66005,6 @@ var QuestionItem = function (_React$Component) {
       );
     }
   }, {
-    key: "renderLikeButton",
-    value: function renderLikeButton() {
-      return _react2.default.createElement(
-        "a",
-        { className: "like-button", onClick: this.likeListener, href: "#" },
-        _react2.default.createElement(
-          "span",
-          null,
-          _react2.default.createElement("i", { className: "fa fa-thumbs-o-up" })
-        ),
-        _react2.default.createElement("br", null),
-        this.props.likes
-      );
-    }
-  }, {
     key: "renderExternalLink",
     value: function renderExternalLink() {
       return _react2.default.createElement(
@@ -65975,22 +66023,12 @@ var QuestionItem = function (_React$Component) {
       return _react2.default.createElement(
         "li",
         { className: "question-item" },
-        this.renderLikeButton(),
+        _react2.default.createElement(_Like2.default, this.props),
         _react2.default.createElement("img", { className: "question-item-media", src: this.props.media }),
         this.renderQuestionDetails(),
         this.renderExternalLink(),
         _react2.default.createElement(_AnswerModal2.default, _extends({}, this.props, { status: this.state.answerModalStatus, hideModal: this.hideAnswerModal }))
       );
-    }
-  }], [{
-    key: "getStores",
-    value: function getStores() {
-      return [_QuestionStore2.default];
-    }
-  }, {
-    key: "getPropsFromStores",
-    value: function getPropsFromStores() {
-      return _QuestionStore2.default.getState();
     }
   }]);
 
@@ -65999,7 +66037,7 @@ var QuestionItem = function (_React$Component) {
 
 exports.default = QuestionItem;
 
-},{"../../actions":207,"../../stores/QuestionStore":219,"./AnswerModal":215,"alt-utils/lib/connectToStores":153,"react":205}],217:[function(require,module,exports){
+},{"./AnswerModal":215,"./Like":216,"react":205}],218:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66053,7 +66091,7 @@ var QuestionList = function (_React$Component) {
 
 exports.default = QuestionList;
 
-},{"./QuestionItem":216,"react":205}],218:[function(require,module,exports){
+},{"./QuestionItem":217,"react":205}],219:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -66135,7 +66173,7 @@ var App = (0, _connectToStores2.default)(_class = function (_React$Component) {
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("root"));
 
-},{"../actions":207,"../stores/QuestionStore":219,"./HomePage":209,"./Navbar":214,"alt-utils/lib/connectToStores":153,"react":205,"react-dom":202}],219:[function(require,module,exports){
+},{"../actions":207,"../stores/QuestionStore":220,"./HomePage":209,"./Navbar":214,"alt-utils/lib/connectToStores":153,"react":205,"react-dom":202}],220:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66208,4 +66246,4 @@ var QuestionStore = (_dec = (0, _decorators.decorate)(_alt2.default), _dec2 = (0
 }(), (_applyDecoratedDescriptor(_class2.prototype, "setUser", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "setUser"), _class2.prototype)), _class2)) || _class);
 exports.default = _alt2.default.createStore(QuestionStore);
 
-},{"../actions":207,"../alt":208,"alt-utils/lib/decorators":154}]},{},[218]);
+},{"../actions":207,"../alt":208,"alt-utils/lib/decorators":154}]},{},[219]);

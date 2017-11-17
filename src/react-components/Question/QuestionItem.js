@@ -1,8 +1,6 @@
 import React from "react";
 import AnswerModal from "./AnswerModal";
-import Actions from "../../actions";
-import connectToStores from "alt-utils/lib/connectToStores";
-import QuestionStore from "../../stores/QuestionStore";
+import Like from "./Like";
 
 class QuestionItem extends React.Component {
   constructor() {
@@ -11,14 +9,6 @@ class QuestionItem extends React.Component {
     this.state = {
       answerModalStatus: false
     }
-  }
-
-  static getStores() {
-    return [QuestionStore];
-  }
-
-  static getPropsFromStores() {
-    return QuestionStore.getState();
   }
 
   showAnswerModal = () => {
@@ -43,22 +33,6 @@ class QuestionItem extends React.Component {
     );
   }
 
-  likeListener = () => {
-    Actions.addLike(this.props.qid, this.props.user.id)
-  }
-
-  renderLikeButton() {
-    return (
-      <a className="like-button" onClick={this.likeListener} href="#">
-        <span>
-          <i className="fa fa-thumbs-o-up"></i>
-        </span>
-        <br/>
-        {this.props.likes}
-      </a>
-    );
-  }
-
   renderExternalLink() {
     return (
       <a className="question-item-link" href={this.props.link}>
@@ -72,7 +46,7 @@ class QuestionItem extends React.Component {
   render() {
     return (
       <li className="question-item">
-        {this.renderLikeButton()}
+        <Like {...this.props} />
         <img className="question-item-media" src={this.props.media} />
         {this.renderQuestionDetails()}
         {this.renderExternalLink()}

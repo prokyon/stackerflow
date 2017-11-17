@@ -1,5 +1,6 @@
 import React from "react";
 import ModalWindow from "../Navbar/ModalWindow";
+import Like from "./Like";
 
 class AnswerModal extends React.Component {
   constructor() {
@@ -22,18 +23,6 @@ class AnswerModal extends React.Component {
     }
   }
 
-  renderLikeButton() {
-    return (
-      <a className="like-button" href="#">
-        <span>
-          <i className="fa fa-thumbs-o-up"></i>
-        </span>
-        <br/>
-        {this.props.likes}
-      </a>
-    );
-  }
-
   renderHeader() {
     return (
       <header style={{backgroundImage: "url(" + this.props.media + ")"}}>
@@ -41,7 +30,7 @@ class AnswerModal extends React.Component {
           <h1>{this.props.name}</h1>
           <p>{this.props.description}</p>
           <section>
-            {this.renderLikeButton()}
+            <Like {...this.props} />
             <a className="visit-link-button" href={this.props.link} target="_blank">Visit Link</a>
           </section>
         </section>
