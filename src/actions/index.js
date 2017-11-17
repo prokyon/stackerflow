@@ -64,7 +64,13 @@ class Actions {
   getQuestions() {
     return(dispatch) => {
       Firebase.database().ref('questions').on('value', function(snapshot) {
-        var questions = _.values(snapshot.val());
+        var questionsValue = snapshot.val();
+        var questions = _(questionsValue).keys().map((questionKey) => {
+          var item = _.clone(questionsValue[questionKey]);
+          item.key = questionKey;
+          return item;
+        })
+        .value();
         dispatch(questions);
       });
     }
@@ -73,6 +79,18 @@ class Actions {
   addQuestion(question) {
     return (dispatch) => {
       Firebase.database().ref('questions').push(question);
+    }
+  }
+
+  addLike(questionId, userId) {
+    return (dispatch) => {
+      var firebaseRef = Firebase.database().ref('questions/' + questionId + '/like');
+
+      var like = 0;
+      firebaseRef.on('value', function(snapshot) {
+        like = snapshot.val();
+      });
+      firebaseRef.set(like + 1);
     }
   }
 }

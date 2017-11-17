@@ -7,7 +7,7 @@ class QuestionList extends React.Component {
       <ul className="question-list">
         {
           this.props.questionList.map(function(item, idx) {
-            return <QuestionItem key={idx} {...item}/>
+            return <QuestionItem key={idx} qid={item.key} {...item}/>
           })
         }
       </ul>

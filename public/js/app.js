@@ -64966,7 +64966,12 @@ var Actions = function () {
     value: function getQuestions() {
       return function (dispatch) {
         _firebase2.default.database().ref('questions').on('value', function (snapshot) {
-          var questions = _lodash2.default.values(snapshot.val());
+          var questionsValue = snapshot.val();
+          var questions = (0, _lodash2.default)(questionsValue).keys().map(function (questionKey) {
+            var item = _lodash2.default.clone(questionsValue[questionKey]);
+            item.key = questionKey;
+            return item;
+          }).value();
           dispatch(questions);
         });
       };
@@ -64976,6 +64981,19 @@ var Actions = function () {
     value: function addQuestion(question) {
       return function (dispatch) {
         _firebase2.default.database().ref('questions').push(question);
+      };
+    }
+  }, {
+    key: "addLike",
+    value: function addLike(questionId, userId) {
+      return function (dispatch) {
+        var firebaseRef = _firebase2.default.database().ref('questions/' + questionId + '/like');
+
+        var like = 0;
+        firebaseRef.on('value', function (snapshot) {
+          like = snapshot.val();
+        });
+        firebaseRef.set(like + 1);
       };
     }
   }]);
@@ -65853,6 +65871,18 @@ var _AnswerModal = require("./AnswerModal");
 
 var _AnswerModal2 = _interopRequireDefault(_AnswerModal);
 
+var _actions = require("../../actions");
+
+var _actions2 = _interopRequireDefault(_actions);
+
+var _connectToStores = require("alt-utils/lib/connectToStores");
+
+var _connectToStores2 = _interopRequireDefault(_connectToStores);
+
+var _QuestionStore = require("../../stores/QuestionStore");
+
+var _QuestionStore2 = _interopRequireDefault(_QuestionStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65875,6 +65905,10 @@ var QuestionItem = function (_React$Component) {
 
     _this.hideAnswerModal = function () {
       _this.setState({ answerModalStatus: false });
+    };
+
+    _this.likeListener = function () {
+      _actions2.default.addLike(_this.props.qid, _this.props.user);
     };
 
     _this.state = {
@@ -65915,7 +65949,7 @@ var QuestionItem = function (_React$Component) {
     value: function renderLikeButton() {
       return _react2.default.createElement(
         "a",
-        { className: "like-button", href: "#" },
+        { className: "like-button", onClick: this.likeListener, href: "#" },
         _react2.default.createElement(
           "span",
           null,
@@ -65951,6 +65985,16 @@ var QuestionItem = function (_React$Component) {
         _react2.default.createElement(_AnswerModal2.default, { status: this.state.answerModalStatus, hideModal: this.hideAnswerModal })
       );
     }
+  }], [{
+    key: "getStores",
+    value: function getStores() {
+      return [_QuestionStore2.default];
+    }
+  }, {
+    key: "getPropsFromStores",
+    value: function getPropsFromStores() {
+      return _QuestionStore2.default.getState();
+    }
   }]);
 
   return QuestionItem;
@@ -65958,7 +66002,7 @@ var QuestionItem = function (_React$Component) {
 
 exports.default = QuestionItem;
 
-},{"./AnswerModal":215,"react":205}],217:[function(require,module,exports){
+},{"../../actions":207,"../../stores/QuestionStore":219,"./AnswerModal":215,"alt-utils/lib/connectToStores":153,"react":205}],217:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66001,7 +66045,7 @@ var QuestionList = function (_React$Component) {
         "ul",
         { className: "question-list" },
         this.props.questionList.map(function (item, idx) {
-          return _react2.default.createElement(_QuestionItem2.default, _extends({ key: idx }, item));
+          return _react2.default.createElement(_QuestionItem2.default, _extends({ key: idx, qid: item.key }, item));
         })
       );
     }
