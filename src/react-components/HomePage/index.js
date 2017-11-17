@@ -1,35 +1,23 @@
 import React from "react";
-import Firebase from "firebase";
 import QuestionList from "../Question/QuestionList";
 
-const config = require("../../../config/config");
+import connectToStores from "alt-utils/lib/connectToStores";
+import QuestionStore from "../../stores/QuestionStore";
+import Actions from "../../actions";
 
-const firebase_config = {
-    apiKey: config.firebase.apiKey,
-    authDomain: config.firebase.authDomain,
-    databaseURL: config.firebase.databaseURL,
-    projectId: config.firebase.projectId,
-    storageBucket: config.firebase.storageBucket,
-    messagingSenderId: config.firebase.messagingSenderId
-};
-
-Firebase.initializeApp(firebase_config);
-
+@connectToStores
 class HomePage extends React.Component {
   constructor() {
     super();
+    Actions.getQuestions();
+  }
 
-    this.state = {
-      questionList: []
-    }
+  static getStores() {
+    return [QuestionStore];
+  }
 
-    Firebase.database().ref("questions").on("value", (snapshot) => {
-      var questions = snapshot.val();
-
-      this.setState({
-        questionList: questions
-      })
-    });
+  static getPropsFromStores() {
+    return QuestionStore.getState();
   }
 
   render() {
@@ -43,9 +31,9 @@ class HomePage extends React.Component {
           <section className="container">
             <h2>Top Questions</h2>
             {
-              this.state.questionList
+              this.props.questions
               ?
-              <QuestionList questionList={this.state.questionList}/>
+              <QuestionList questionList={this.props.questions}/>
               :
               null
             }

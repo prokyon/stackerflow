@@ -47799,6 +47799,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var config = require("../../config/config");
+
+var firebase_config = {
+  apiKey: config.firebase.apiKey,
+  authDomain: config.firebase.authDomain,
+  databaseURL: config.firebase.databaseURL,
+  storageBucket: config.firebase.storageBucket
+};
+
+_firebase2.default.initializeApp(firebase_config);
+
 var Actions = function () {
   function Actions() {
     _classCallCheck(this, Actions);
@@ -47858,6 +47869,16 @@ var Actions = function () {
         });
       };
     }
+  }, {
+    key: "getQuestions",
+    value: function getQuestions() {
+      return function (dispatch) {
+        _firebase2.default.database().ref('questions').on('value', function (snapshot) {
+          var questions = snapshot.val();
+          dispatch(questions);
+        });
+      };
+    }
   }]);
 
   return Actions;
@@ -47865,7 +47886,7 @@ var Actions = function () {
 
 exports.default = _alt2.default.createActions(Actions);
 
-},{"../alt":207,"firebase":185}],207:[function(require,module,exports){
+},{"../../config/config":2,"../alt":207,"firebase":185}],207:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47889,17 +47910,27 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _class;
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _firebase = require("firebase");
-
-var _firebase2 = _interopRequireDefault(_firebase);
-
 var _QuestionList = require("../Question/QuestionList");
 
 var _QuestionList2 = _interopRequireDefault(_QuestionList);
+
+var _connectToStores = require("alt-utils/lib/connectToStores");
+
+var _connectToStores2 = _interopRequireDefault(_connectToStores);
+
+var _QuestionStore = require("../../stores/QuestionStore");
+
+var _QuestionStore2 = _interopRequireDefault(_QuestionStore);
+
+var _actions = require("../../actions");
+
+var _actions2 = _interopRequireDefault(_actions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47909,20 +47940,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var config = require("../../../config/config");
-
-var firebase_config = {
-  apiKey: config.firebase.apiKey,
-  authDomain: config.firebase.authDomain,
-  databaseURL: config.firebase.databaseURL,
-  projectId: config.firebase.projectId,
-  storageBucket: config.firebase.storageBucket,
-  messagingSenderId: config.firebase.messagingSenderId
-};
-
-_firebase2.default.initializeApp(firebase_config);
-
-var HomePage = function (_React$Component) {
+var HomePage = (0, _connectToStores2.default)(_class = function (_React$Component) {
   _inherits(HomePage, _React$Component);
 
   function HomePage() {
@@ -47930,17 +47948,7 @@ var HomePage = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this));
 
-    _this.state = {
-      questionList: []
-    };
-
-    _firebase2.default.database().ref("questions").on("value", function (snapshot) {
-      var questions = snapshot.val();
-
-      _this.setState({
-        questionList: questions
-      });
-    });
+    _actions2.default.getQuestions();
     return _this;
   }
 
@@ -47966,19 +47974,29 @@ var HomePage = function (_React$Component) {
               null,
               "Top Questions"
             ),
-            this.state.questionList ? _react2.default.createElement(_QuestionList2.default, { questionList: this.state.questionList }) : null
+            this.props.questions ? _react2.default.createElement(_QuestionList2.default, { questionList: this.props.questions }) : null
           )
         )
       );
     }
+  }], [{
+    key: "getStores",
+    value: function getStores() {
+      return [_QuestionStore2.default];
+    }
+  }, {
+    key: "getPropsFromStores",
+    value: function getPropsFromStores() {
+      return _QuestionStore2.default.getState();
+    }
   }]);
 
   return HomePage;
-}(_react2.default.Component);
+}(_react2.default.Component)) || _class;
 
 exports.default = HomePage;
 
-},{"../../../config/config":2,"../Question/QuestionList":216,"firebase":185,"react":204}],209:[function(require,module,exports){
+},{"../../actions":206,"../../stores/QuestionStore":218,"../Question/QuestionList":216,"alt-utils/lib/connectToStores":153,"react":204}],209:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

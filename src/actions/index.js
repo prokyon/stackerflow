@@ -1,5 +1,15 @@
 import alt from "../alt";
 import Firebase from "firebase";
+const config = require("../../config/config");
+
+const firebase_config = {
+    apiKey: config.firebase.apiKey,
+    authDomain: config.firebase.authDomain,
+    databaseURL: config.firebase.databaseURL,
+    storageBucket: config.firebase.storageBucket
+};
+
+Firebase.initializeApp(firebase_config);
 
 class Actions {
   initSession() {
@@ -45,6 +55,15 @@ class Actions {
         setTimeout(() => dispatch(null));
       }, function(error) {
         console.log(error);
+      });
+    }
+  }
+
+  getQuestions() {
+    return(dispatch) => {
+      Firebase.database().ref('questions').on('value', function(snapshot) {
+        var questions = snapshot.val();
+        dispatch(questions);
       });
     }
   }
