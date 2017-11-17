@@ -45,7 +45,7 @@ class ProfileDropDownMenu extends React.Component {
   render() {
     return (
       <section className="profile-menu">
-        <img src="/img/user.png" onClick={this.menuListener} ref="profileButton" className="profile-button avatar-medium"/>
+        <img src={this.props.user.avatar} onClick={this.menuListener} ref="profileButton" className="profile-button avatar-medium"/>
         {
           this.state.showProfileNavbar ? this.renderProfileNavbarButton() : null
         }

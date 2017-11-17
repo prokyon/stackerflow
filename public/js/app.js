@@ -47811,7 +47811,14 @@ var Actions = function () {
         var provider = new _firebase2.default.auth.FacebookAuthProvider();
         _firebase2.default.auth().signInWithPopup(provider).then(function (result) {
           var user = result.user;
-          dispatch(user);
+          var profile = {
+            id: user.uid,
+            name: user.providerData[0].displayName,
+            avatar: user.providerData[0].photoURL
+          };
+
+          _firebase2.default.database().ref('/users/' + user.uid).set(profile);
+          dispatch(profile);
         }).catch(function (error) {
           console.log('Failed!', error);
         });
@@ -47984,7 +47991,7 @@ var LoginModal = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LoginModal.__proto__ || Object.getPrototypeOf(LoginModal)).call.apply(_ref, [this].concat(args))), _this), _this.facebookLogin = function () {
       _actions2.default.login();
-      _this.props.hideLoginModal();
+      _this.props.hideModal();
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -48317,7 +48324,7 @@ var ProfileDropDownMenu = function (_React$Component) {
       return _react2.default.createElement(
         "section",
         { className: "profile-menu" },
-        _react2.default.createElement("img", { src: "/img/user.png", onClick: this.menuListener, ref: "profileButton", className: "profile-button avatar-medium" }),
+        _react2.default.createElement("img", { src: this.props.user.avatar, onClick: this.menuListener, ref: "profileButton", className: "profile-button avatar-medium" }),
         this.state.showProfileNavbar ? this.renderProfileNavbarButton() : null
       );
     }
@@ -48424,7 +48431,7 @@ var Navbar = function (_React$Component) {
               { href: "#", onClick: this.showLoginModal, className: "login-button" },
               "Create Question"
             ),
-            _react2.default.createElement(_ProfileDropDownMenu2.default, null)
+            _react2.default.createElement(_ProfileDropDownMenu2.default, { user: this.props.user })
           ),
           _react2.default.createElement(_PostQuestionModal2.default, { status: this.state.modalStatus, hideModal: this.hideLoginModal })
         ) :

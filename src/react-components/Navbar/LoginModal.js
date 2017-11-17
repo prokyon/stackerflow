@@ -5,7 +5,7 @@ import Actions from "../../actions";
 class LoginModal extends React.Component {
   facebookLogin = () => {
     Actions.login();
-    this.props.hideLoginModal();
+    this.props.hideModal();
   };
 
   render() {
