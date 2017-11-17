@@ -65010,6 +65010,24 @@ var Actions = function () {
         _firebase2.default.database().ref('/answers/' + questionId).push(answer);
       };
     }
+  }, {
+    key: "getAnswers",
+    value: function getAnswers(questionId) {
+      return function (dispatch) {
+        var answerRef = _firebase2.default.database().ref('answers/' + questionId);
+
+        answerRef.on('value', function (snapshot) {
+          var answersValue = snapshot.val();
+          var answers = (0, _lodash2.default)(answersValue).keys().map(function (answerKey) {
+            var item = _lodash2.default.clone(answersValue[answerKey]);
+            item.key = answerKey;
+            return item;
+          }).value();
+
+          dispatch(answers);
+        });
+      };
+    }
   }]);
 
   return Actions;
@@ -65731,7 +65749,6 @@ var AnswerModal = (0, _connectToStores2.default)(_class = function (_React$Compo
   function AnswerModal() {
     _classCallCheck(this, AnswerModal);
 
-    // dummy data
     var _this = _possibleConstructorReturn(this, (AnswerModal.__proto__ || Object.getPrototypeOf(AnswerModal)).call(this));
 
     _this.answerListener = function (e) {
@@ -65747,21 +65764,21 @@ var AnswerModal = (0, _connectToStores2.default)(_class = function (_React$Compo
       }
     };
 
-    _this.state = {
-      answers: [{
-        name: "Ned Flanders",
-        avatar: "/img/user.png",
-        reply: "This is a helpful Stackerflow answer. Lorem ipsum..."
-      }, {
-        name: "Nelson",
-        avatar: "/img/user.png",
-        reply: "Ha ha! Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
-      }]
-    };
     return _this;
   }
 
   _createClass(AnswerModal, [{
+    key: "shouldComponentUpdate",
+
+
+    // https://reactjs.org/docs/react-component.html#shouldcomponentupdate
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      if (nextProps.status && this.props.status != nextState.status) {
+        _actions2.default.getAnswers(this.props.qid);
+      }
+      return true;
+    }
+  }, {
     key: "renderHeader",
     value: function renderHeader() {
       return _react2.default.createElement(
@@ -66226,7 +66243,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _class, _desc, _value, _class2;
+var _dec, _dec2, _dec3, _class, _desc, _value, _class2;
 
 var _alt = require("../alt");
 
@@ -66272,11 +66289,15 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 }
 
 // ES7 syntax
-var QuestionStore = (_dec = (0, _decorators.decorate)(_alt2.default), _dec2 = (0, _decorators.bind)(_actions2.default.login, _actions2.default.initSession, _actions2.default.logout), _dec(_class = (_class2 = function () {
+var QuestionStore = (_dec = (0, _decorators.decorate)(_alt2.default), _dec2 = (0, _decorators.bind)(_actions2.default.login, _actions2.default.initSession, _actions2.default.logout), _dec3 = (0, _decorators.bind)(_actions2.default.getAnswers), _dec(_class = (_class2 = function () {
   function QuestionStore() {
     _classCallCheck(this, QuestionStore);
 
-    this.state = { user: null };
+    this.state = {
+      user: null,
+      questions: [],
+      answers: []
+    };
   }
 
   _createClass(QuestionStore, [{
@@ -66284,10 +66305,15 @@ var QuestionStore = (_dec = (0, _decorators.decorate)(_alt2.default), _dec2 = (0
     value: function setUser(user) {
       this.setState({ user: user });
     }
+  }, {
+    key: "getAnswers",
+    value: function getAnswers(answers) {
+      this.setState({ answers: answers });
+    }
   }]);
 
   return QuestionStore;
-}(), (_applyDecoratedDescriptor(_class2.prototype, "setUser", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "setUser"), _class2.prototype)), _class2)) || _class);
+}(), (_applyDecoratedDescriptor(_class2.prototype, "setUser", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "setUser"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "getAnswers", [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, "getAnswers"), _class2.prototype)), _class2)) || _class);
 exports.default = _alt2.default.createStore(QuestionStore);
 
 },{"../actions":207,"../alt":208,"alt-utils/lib/decorators":154}]},{},[219]);

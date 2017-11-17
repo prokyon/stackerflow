@@ -106,6 +106,24 @@ class Actions {
       Firebase.database().ref('/answers/' + questionId).push(answer);
     }
   }
+
+  getAnswers(questionId) {
+    return (dispatch) => {
+      var answerRef = Firebase.database().ref('answers/' + questionId);
+
+      answerRef.on('value', function(snapshot) {
+        var answersValue = snapshot.val();
+        var answers = _(answersValue).keys().map((answerKey) => {
+          var item = _.clone(answersValue[answerKey]);
+          item.key = answerKey;
+          return item;
+        })
+        .value();
+        
+        dispatch(answers);
+      });
+    }
+  }
 }
 
 export default alt.createActions(Actions);

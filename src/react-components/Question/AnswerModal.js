@@ -9,22 +9,6 @@ import Actions from "../../actions";
 class AnswerModal extends React.Component {
   constructor() {
     super();
-
-    // dummy data
-    this.state = {
-      answers: [
-        {
-          name: "Ned Flanders",
-          avatar: "/img/user.png",
-          reply: "This is a helpful Stackerflow answer. Lorem ipsum..."
-        },
-        {
-          name: "Nelson",
-          avatar: "/img/user.png",
-          reply: "Ha ha! Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
-        }
-      ]
-    }
   }
 
   static getStores() {
@@ -33,6 +17,14 @@ class AnswerModal extends React.Component {
 
   static getPropsFromStores() {
     return QuestionStore.getState();
+  }
+
+  // https://reactjs.org/docs/react-component.html#shouldcomponentupdate
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.status && this.props.status != nextState.status) {
+      Actions.getAnswers(this.props.qid);
+    }
+    return true;
   }
 
   renderHeader() {
