@@ -1,5 +1,7 @@
 import alt from "../alt";
 import Firebase from "firebase";
+import _ from "lodash";
+
 const config = require("../../config/config");
 
 const firebase_config = {
@@ -62,7 +64,7 @@ class Actions {
   getQuestions() {
     return(dispatch) => {
       Firebase.database().ref('questions').on('value', function(snapshot) {
-        var questions = snapshot.val();
+        var questions = _.values(snapshot.val());
         dispatch(questions);
       });
     }
