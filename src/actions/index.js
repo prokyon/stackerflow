@@ -67,6 +67,12 @@ class Actions {
       });
     }
   }
+
+  addQuestion(question) {
+    return (dispatch) => {
+      Firebase.database().ref('questions').push(question);
+    }
+  }
 }
 
 export default alt.createActions(Actions);

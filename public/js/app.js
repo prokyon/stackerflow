@@ -47879,6 +47879,13 @@ var Actions = function () {
         });
       };
     }
+  }, {
+    key: "addQuestion",
+    value: function addQuestion(question) {
+      return function (dispatch) {
+        _firebase2.default.database().ref('questions').push(question);
+      };
+    }
   }]);
 
   return Actions;
@@ -48165,6 +48172,10 @@ var _ModalWindow = require("./ModalWindow");
 
 var _ModalWindow2 = _interopRequireDefault(_ModalWindow);
 
+var _actions = require("../../actions");
+
+var _actions2 = _interopRequireDefault(_actions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48187,7 +48198,21 @@ var PostQuestionModal = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostQuestionModal.__proto__ || Object.getPrototypeOf(PostQuestionModal)).call.apply(_ref, [this].concat(args))), _this), _this.postQuestion = function () {}, _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostQuestionModal.__proto__ || Object.getPrototypeOf(PostQuestionModal)).call.apply(_ref, [this].concat(args))), _this), _this.postQuestion = function () {
+      var newQuestion = {
+        name: _this.refs.title.value,
+        description: _this.refs.description.value,
+        tags: _this.refs.tags.value,
+        image: _this.refs.image.value,
+        likes: 0,
+        user: {
+          name: _this.props.user.name,
+          avatar: _this.props.user.avatar
+        }
+      };
+
+      _actions2.default.addQuestion(newQuestion);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PostQuestionModal, [{
@@ -48221,7 +48246,7 @@ var PostQuestionModal = function (_React$Component) {
                 _react2.default.createElement(
                   "td",
                   null,
-                  _react2.default.createElement("input", { placeholder: "Please enter your question title." })
+                  _react2.default.createElement("input", { placeholder: "Please enter your question title.", ref: "title" })
                 )
               ),
               _react2.default.createElement(
@@ -48235,7 +48260,7 @@ var PostQuestionModal = function (_React$Component) {
                 _react2.default.createElement(
                   "td",
                   null,
-                  _react2.default.createElement("input", { placeholder: "Please enter your question description" })
+                  _react2.default.createElement("input", { placeholder: "Please enter your question description", ref: "description" })
                 )
               ),
               _react2.default.createElement(
@@ -48249,7 +48274,7 @@ var PostQuestionModal = function (_React$Component) {
                 _react2.default.createElement(
                   "td",
                   null,
-                  _react2.default.createElement("input", { placeholder: "Please enter tags" })
+                  _react2.default.createElement("input", { placeholder: "Please enter tags", ref: "tags" })
                 )
               ),
               _react2.default.createElement(
@@ -48263,7 +48288,7 @@ var PostQuestionModal = function (_React$Component) {
                 _react2.default.createElement(
                   "td",
                   null,
-                  _react2.default.createElement("input", { placeholder: "Please enter link to image" })
+                  _react2.default.createElement("input", { placeholder: "Please enter link to image", ref: "image" })
                 )
               )
             )
@@ -48287,7 +48312,7 @@ var PostQuestionModal = function (_React$Component) {
 
 exports.default = PostQuestionModal;
 
-},{"./ModalWindow":210,"react":204}],212:[function(require,module,exports){
+},{"../../actions":206,"./ModalWindow":210,"react":204}],212:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48494,7 +48519,7 @@ var Navbar = function (_React$Component) {
             ),
             _react2.default.createElement(_ProfileDropDownMenu2.default, { user: this.props.user })
           ),
-          _react2.default.createElement(_PostQuestionModal2.default, { status: this.state.modalStatus, hideModal: this.hideLoginModal })
+          _react2.default.createElement(_PostQuestionModal2.default, { user: this.props.user, status: this.state.modalStatus, hideModal: this.hideLoginModal })
         ) :
         // User logged out
         _react2.default.createElement(
